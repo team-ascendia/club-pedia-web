@@ -1,0 +1,32 @@
+{
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.fixAll": "always"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+
+  "tailwindCSS.classAttributes": [
+    "class",
+    "ngClass",
+    "className",
+    "classNames",
+    ".*classNames.*",
+    ".*Variants.*",
+    ".*Variants.*",
+    "cva"
+  ],
+  "tailwindCSS.experimental.classRegex": ["cva\\(([^)]*)\\)"],
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
+}
