@@ -131,6 +131,12 @@ const eslintConfig = [
     },
   },
   {
+    name: "any허용",
+    rules: {
+      "@typescript-eslint/no-explicit-any": 0,
+    },
+  },
+  {
     rules: {
       "prettier/prettier": [
         "error",
