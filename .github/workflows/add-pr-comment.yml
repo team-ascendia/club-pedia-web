@@ -1,0 +1,25 @@
+name: PR merge Reminder
+on:
+  pull_request:
+    branches: [main, master, "dev"] # dev 브랜치 추가
+    types: [opened, reopened]
+
+jobs:
+  pr-on:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open main(master) branch
+        if: ${{ github.base_ref == 'main' }}
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            master(main) 브랜치에는 `Merge commit`을 해야합니다!
+
+      - name: Open dev branch
+        if: ${{ github.base_ref == 'dev' }}
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            dev 브랜치에는 `Squash and Merge` 해야합니다!
