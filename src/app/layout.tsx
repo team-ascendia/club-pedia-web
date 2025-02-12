@@ -1,4 +1,4 @@
-import { MSWComponent } from "@/mocks/mswComponent"
+import { MSWComponent } from "../mocks/mswComponent"
 import "./globals.css"
 
 import type { Metadata } from "next"
