@@ -1,3 +1,4 @@
+import { MSWComponent } from "@/mocks/mswComponent"
 import "./globals.css"
 
 import type { Metadata } from "next"
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <MSWComponent>{children}</MSWComponent>
+      </body>
     </html>
   )
 }
