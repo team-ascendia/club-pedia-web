@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { PropsWithChildren, useEffect, useState } from "react"
 
-export const MSWComponent: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const MSWComponent: React.FC<PropsWithChildren> = ({ children }) => {
   const [mswReady, setMswReady] = useState(false)
 
   useEffect(() => {
@@ -19,3 +19,5 @@ export const MSWComponent: React.FC<{ children: React.ReactNode }> = ({ children
 
   return <>{children}</>
 }
+
+export default MSWComponent
