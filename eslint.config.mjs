@@ -29,7 +29,7 @@ const eslintConfig = [
     rules: {
       "no-relative-import-paths/no-relative-import-paths": [
         "warn",
-        { allowSameFolder: true, rootDir: "src", prefix: "@" },
+        { allowSameFolder: true, rootDir: "./", prefix: "@" },
       ],
     },
   },
@@ -125,7 +125,7 @@ const eslintConfig = [
     },
   },
   {
-    files: ["**/*.{jsx,tsx,ts,jx"],
+    files: ["**/*.{jsx,tsx,ts,js}"],
     rules: {
       "no-console": "warn",
     },
