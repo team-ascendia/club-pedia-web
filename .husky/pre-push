@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"  # Husky v9에서는 필수
+
+echo "🔄 Running build before push..."
+
+if pnpm run build; then
+  echo "✅ Build successful! Proceeding with push..."
+  exit 0
+else
+  echo "❌ Build failed! Push is blocked."
+  exit 1
+fi
