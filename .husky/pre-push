@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-. "$(dirname "$0")/_/husky.sh"
+. "$(dirname -- "$0")/_/husky.sh"  # Husky v9에서는 필수
 
 echo "🔄 Running build before push..."
 
