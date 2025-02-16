@@ -1,13 +1,23 @@
 "use client"
 
-import signBottomSheet from "./sign-bottom-sheet"
+import SignBottomSheet from "./sign-bottom-sheet"
 import { modalManager } from "@/src/common/module/modal-manager"
 
 const BottomSheetDummy = () => {
   const modalOpen = () => {
     modalManager.open({
-      Component: signBottomSheet,
-      componentProps: {},
+      Component: SignBottomSheet,
+      componentProps: {
+        userInfo: {
+          accessToken: "",
+          birthday: "",
+          email: "",
+          gender: "",
+          name: "",
+          phone: "",
+          refreshToken: "",
+        },
+      },
       id: "sign-bottom-sheet",
     })
   }
