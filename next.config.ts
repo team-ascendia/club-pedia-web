@@ -1,4 +1,6 @@
+import { config as dotenvConfig } from "dotenv"
 import type { NextConfig } from "next"
+dotenvConfig()
 
 const nextConfig: NextConfig = {
   webpack: config => {
