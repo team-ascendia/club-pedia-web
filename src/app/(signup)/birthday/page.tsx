@@ -1,8 +1,8 @@
 "use client"
 
 import Header from "@/src/common/components/bar/header"
-import NextButton from "@/src/common/components/button/_next-button"
 import BirthBox from "@/src/domain/signup/components/birth-box"
+import NextButton from "@/src/domain/signup/components/next-button"
 import Title from "@/src/domain/signup/components/title"
 import useSignup from "@/src/domain/signup/context/signup-context"
 

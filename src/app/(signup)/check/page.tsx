@@ -3,9 +3,9 @@
 import CircleChecked from "@mui/icons-material/CheckCircleOutline"
 import { useEffect, useState } from "react"
 import Header from "@/src/common/components/bar/header"
-import NextButton from "@/src/common/components/button/_next-button"
 import BirthBox from "@/src/domain/signup/components/birth-box"
 import GenderBox from "@/src/domain/signup/components/gender-box"
+import NextButton from "@/src/domain/signup/components/next-button"
 import Title from "@/src/domain/signup/components/title"
 import useSignup from "@/src/domain/signup/context/signup-context"
 
@@ -32,16 +32,16 @@ const Page = () => {
     setUserName(inputValue)
   }
 
-  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value
     setPhoneNum(input)
   }
 
-  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeMale = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([event.target.checked, false])
   }
 
-  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeFemale = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([false, event.target.checked])
   }
 
@@ -86,8 +86,8 @@ const Page = () => {
         )}
         <div className="mb-4 mt-7 text-xs">전화번호</div>
         <input
-          value={user?.phone ?? ""}
-          onChange={handleInput}
+          value={user?.phoneNumber ?? ""}
+          onChange={handlePhoneNumber}
           className="w-full border-b border-gray-400 pb-1 text-base font-normal"
         />
         {phoneError && (
@@ -99,7 +99,7 @@ const Page = () => {
         <div className="mb-2 mt-7 text-xs">생년원일</div>
         <BirthBox />
         <div className="mb-2 mt-7 text-xs">성별</div>
-        <GenderBox checked={checked} handleChange1={handleChange1} handleChange2={handleChange2} />
+        <GenderBox checked={checked} handleChangeMale={handleChangeMale} handleChangeFemale={handleChangeFemale} />
       </div>
 
       <NextButton isActive={checked.some(Boolean) && isValidTotal()} onClick={handleClick}>

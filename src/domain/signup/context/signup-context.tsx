@@ -7,15 +7,7 @@ type TUser = {
   name: string
   birthday: string
   gender: string
-  phone: string
-}
-
-const Default = {
-  email: "lynn1833@ewhain.net",
-  name: "",
-  birthday: "2002-07-27",
-  gender: "FEMALE",
-  phone: "",
+  phoneNumber: string
 }
 
 type TAuthContextType = {
@@ -26,6 +18,8 @@ type TAuthContextType = {
   error: boolean
   phoneError: boolean
   filterPages: string[]
+  setFilterPages: React.Dispatch<React.SetStateAction<string[]>>
+  setUser: (user: TUser) => void
   setUserName: (name: string) => void
   setPhoneNum: (phone: string) => void
   setBirthday: () => void
@@ -52,17 +46,16 @@ export const SignupProvider = ({ children }: IAuthProviderProps) => {
     email: "",
     birthday: "",
     gender: "",
-    phone: "",
+    phoneNumber: "",
   })
+
   const [error, setError] = useState(false)
   const [phoneError, setPhoneError] = useState(false)
   const [year, setYear] = useState("")
   const [month, setMonth] = useState("")
   const [day, setDay] = useState("")
+  const [filterPages, setFilterPages] = useState<string[]>([])
 
-  const pages = ["name", "phone", "birthday", "gender", "check"]
-
-  const filterPages = pages.filter(page => !Default[page as keyof typeof Default])
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const nextPage = () => {
@@ -95,7 +88,7 @@ export const SignupProvider = ({ children }: IAuthProviderProps) => {
 
     const formatted = inputValue.replace(/^(\d{3})(\d{4})(\d{4})$/, "$1-$2-$3").substring(0, 13)
 
-    setUser(prev => ({ ...prev, phone: formatted }))
+    setUser(prev => ({ ...prev, phoneNumber: formatted }))
 
     if (!inputValue.startsWith("010") || inputValue.length !== 11) {
       setPhoneError(true)
@@ -168,6 +161,8 @@ export const SignupProvider = ({ children }: IAuthProviderProps) => {
         filterPages,
         currentIndex,
         backPage,
+        setUser,
+        setFilterPages,
       }}
     >
       {children}

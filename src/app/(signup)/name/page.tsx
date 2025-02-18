@@ -3,7 +3,7 @@
 import { Icon } from "@iconify/react"
 import CircleChecked from "@mui/icons-material/CheckCircleOutline"
 import Header from "@/src/common/components/bar/header"
-import NextButton from "@/src/common/components/button/_next-button"
+import NextButton from "@/src/domain/signup/components/next-button"
 import Title from "@/src/domain/signup/components/title"
 import useSignup from "@/src/domain/signup/context/signup-context"
 

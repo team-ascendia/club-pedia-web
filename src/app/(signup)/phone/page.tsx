@@ -2,7 +2,7 @@
 
 import CircleChecked from "@mui/icons-material/CheckCircleOutline"
 import Header from "@/src/common/components/bar/header"
-import NextButton from "@/src/common/components/button/_next-button"
+import NextButton from "@/src/domain/signup/components/next-button"
 import Title from "@/src/domain/signup/components/title"
 import useSignup from "@/src/domain/signup/context/signup-context"
 
@@ -23,7 +23,7 @@ const Page = () => {
           className={`flex items-center border-b  ${!phoneError ? "border-gray-400" : "border-primary-400"} px-1 py-2`}
         >
           <input
-            value={user?.phone ?? ""}
+            value={user?.phoneNumber ?? ""}
             onChange={handleInput}
             placeholder="전화번호"
             className="flex-1 overflow-auto outline-none"
@@ -37,7 +37,7 @@ const Page = () => {
         )}
       </div>
 
-      <NextButton nextPath={`/${NextPageName}`} onClick={nextPage} isActive={!phoneError && !!user?.phone}>
+      <NextButton nextPath={`/${NextPageName}`} onClick={nextPage} isActive={!phoneError && !!user?.phoneNumber}>
         다음
       </NextButton>
     </div>
