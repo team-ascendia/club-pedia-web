@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 
 import CircleChecked from "@mui/icons-material/RadioButtonChecked"
 import CircleUnchecked from "@mui/icons-material/RadioButtonUnchecked"
@@ -6,17 +6,17 @@ import Checkbox from "@mui/material/Checkbox"
 
 interface IGenderProps {
   checked: [boolean, boolean]
-  handleChange1: (event: React.ChangeEvent<HTMLInputElement>) => void
-  handleChange2: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleChangeMale: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleChangeFemale: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const GenderBox: React.FC<IGenderProps> = ({ checked, handleChange1, handleChange2 }) => {
+const GenderBox: React.FC<IGenderProps> = ({ checked, handleChangeMale, handleChangeFemale }) => {
   return (
     <div className="flex gap-x-12">
       <div className="flex items-center gap-x-1">
         <Checkbox
           checked={checked[0]}
-          onChange={handleChange1}
+          onChange={handleChangeMale}
           icon={<CircleUnchecked style={{ color: "#BDBDBD" }} />}
           checkedIcon={<CircleChecked />}
           sx={{
@@ -31,7 +31,7 @@ const GenderBox: React.FC<IGenderProps> = ({ checked, handleChange1, handleChang
       <div className="flex items-center gap-x-1">
         <Checkbox
           checked={checked[1]}
-          onChange={handleChange2}
+          onChange={handleChangeFemale}
           icon={<CircleUnchecked style={{ color: "#BDBDBD" }} />}
           checkedIcon={<CircleChecked />}
           sx={{

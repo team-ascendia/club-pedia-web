@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ title, showClose = false, showBack = fa
   }
 
   return (
-    <div className="flex items-center border-b px-2 py-3">
+    <div className="flex items-center px-2 py-3">
       {showBack && (
         <button onClick={handleBack} className="text-xl">
           <Icon icon="mingcute:left-line" className="text-xl" />

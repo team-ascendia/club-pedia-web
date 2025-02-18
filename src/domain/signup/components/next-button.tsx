@@ -13,15 +13,12 @@ const NextButton: React.FC<NextButtonProps> = ({ isActive = false, nextPath, onC
   const router = useRouter()
 
   const handleClick = () => {
-    if (isActive) {
-      if (onClick) {
-        onClick()
-      }
-      if (nextPath) {
-        router.push(nextPath)
-      }
+    onClick?.()
+    if (nextPath) {
+      router.push(nextPath)
     }
   }
+
   return (
     <button
       disabled={!isActive}
