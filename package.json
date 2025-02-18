@@ -25,6 +25,7 @@
     "@mui/icons-material": "^6.4.4",
     "@mui/material": "^6.4.4",
     "@types/kakao-js-sdk": "^1.39.5",
+    "cookies-next": "^5.1.0",
     "ky": "^1.7.5",
     "next": "15.1.6",
     "react": "^19.0.0",
