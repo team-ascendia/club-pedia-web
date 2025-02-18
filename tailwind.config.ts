@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        pretendard: ["vaf(--font-pretendard)"],
+        apple: ["var-(--font-apple)"],
       },
       colors: defaultColor,
       fontSize: defaultFontSize,

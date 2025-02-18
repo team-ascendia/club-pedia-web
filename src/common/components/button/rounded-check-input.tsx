@@ -1,16 +1,17 @@
-import { InputHTMLAttributes } from "react"
+import { InputHTMLAttributes, RefObject } from "react"
 import cn from "@/src/common/util/cn"
 
 interface RoundedCheckInputProps extends InputHTMLAttributes<HTMLInputElement> {
   active: boolean
   name: string
+  ref?: RefObject<HTMLInputElement | null>
 }
 
 const RoundedCheckInput = (props: RoundedCheckInputProps) => {
-  const { active, onChange, name, className, ...rest } = props
+  const { active, name, className, ref, ...rest } = props
   return (
     <>
-      <input type="checkbox" id={name} className="hidden" onChange={onChange} {...rest} />
+      <input ref={ref} type="checkbox" id={name} className="hidden" {...rest} />
       <label
         htmlFor={name}
         className={cn(

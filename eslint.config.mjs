@@ -2,6 +2,7 @@ import { dirname } from "path"
 import { fileURLToPath } from "url"
 import { FlatCompat } from "@eslint/eslintrc"
 import eslintJs from "@eslint/js"
+import pluginQuery from "@tanstack/eslint-plugin-query"
 import importPlugin from "eslint-plugin-import"
 import noRelativeImportPaths from "eslint-plugin-no-relative-import-paths"
 import prettierRecommended from "eslint-plugin-prettier/recommended"
@@ -21,6 +22,7 @@ const eslintConfig = [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   eslintJs.configs.recommended,
   prettierRecommended,
+  ...pluginQuery.configs["flat/recommended"],
   {
     name: "절대 경로 import",
     plugins: {

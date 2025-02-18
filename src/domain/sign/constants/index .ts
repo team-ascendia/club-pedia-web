@@ -37,3 +37,8 @@ export const TermList: TermItem[] = [
     name: "isMarketingAgreed",
   },
 ]
+
+export const defaultTermState = TermList.reduce(
+  (acc, { name }) => ({ ...acc, [name]: false }),
+  {} as Record<string, boolean>,
+)

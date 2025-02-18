@@ -2,7 +2,7 @@ import { config as dotenvConfig } from "dotenv"
 import type { NextConfig } from "next"
 dotenvConfig()
 
-console.log("env", process.env.HELLO)
+console.log("NODE Env: ", process.env.NODE_ENV)
 
 const nextConfig: NextConfig = {
   webpack: config => {

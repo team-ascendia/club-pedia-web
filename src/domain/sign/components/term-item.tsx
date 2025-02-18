@@ -30,7 +30,7 @@ const TermItem = (props: TermItemProps) => {
               "bg-gray-300": !required,
             })}
           >
-            <p className="text-12 text-white">{required ? "필수" : "선택"}</p>
+            <p className="body6 text-white">{required ? "필수" : "선택"}</p>
           </div>
           <p className="text-12">{title}</p>
         </div>
@@ -43,7 +43,7 @@ const TermItem = (props: TermItemProps) => {
       </div>
       <div
         className={cn(
-          "mx-auto w-[calc(100%-15px)] overflow-scroll border-[0.5px] transition-[max-height,opacity,border-color] duration-300 ease-in-out px-[17.5px]",
+          "mx-auto w-[calc(100%-15px)] text-body6 overflow-scroll border-[0.5px] transition-[max-height,opacity,border-color] duration-300 ease-in-out px-[17.5px]",
           isOpenTerm
             ? "py-3 max-h-[300px] opacity-100 border-gray-300 mt-[26px]"
             : "max-h-0 opacity-0 border-transparent mt-0",
