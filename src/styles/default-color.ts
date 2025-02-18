@@ -2,9 +2,6 @@ const defaultColor = {
   black: {
     DEFAULT: "#17171B",
   },
-  white: {
-    DEFAULT: "#FFFFFF",
-  },
   gray: {
     900: "#212121",
     800: "#414141",
