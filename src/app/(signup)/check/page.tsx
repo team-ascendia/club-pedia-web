@@ -20,6 +20,11 @@ const Page = () => {
   const [checked, setChecked] = useState<[boolean, boolean]>([false, false])
 
   useEffect(() => {
+    setUserName(user?.name ?? "")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
     if (user?.gender === "MALE") {
       setChecked([true, false])
     } else {
