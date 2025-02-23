@@ -34,21 +34,21 @@ const Page = () => {
       <div className="flex flex-col gap-y-5">
         <button
           onClick={handleKakaoLogin}
-          className="flex items-center justify-center gap-x-2 rounded-xl bg-yellow-50 p-4 text-base font-medium"
+          className="flex items-center justify-center gap-x-2 rounded-[10px] bg-yellow-50 p-4 text-base font-medium"
         >
           <Icon icon="raphael:bubble" />
           카카오로 시작하기
         </button>
         <button
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-x-2 rounded-xl border border-gray-400 p-4 text-base font-medium"
+          className="flex items-center justify-center gap-x-2 rounded-[10px] border border-gray-400 p-4 text-base font-medium"
         >
           <Icon icon="flat-color-icons:google" />
           구글로 시작하기
         </button>
         <button
           onClick={handleNaverLogin}
-          className="flex items-center justify-center gap-x-2 rounded-xl bg-[#02C759] p-4 text-base font-medium text-white"
+          className="flex items-center justify-center gap-x-2 rounded-[10px] bg-[#02C759] p-4 text-base font-medium text-white"
         >
           <Icon icon="simple-icons:naver" />
           네이버로 시작하기
