@@ -22,7 +22,7 @@ const GenderBox: React.FC<IGenderProps> = ({ checked, handleChangeMale, handleCh
           sx={{
             "& .MuiSvgIcon-root": { fontSize: 21 },
             "&.Mui-checked": {
-              color: "#FF90A1",
+              color: "rgb(255, 144, 161)",
             },
           }}
         />

@@ -1,14 +1,7 @@
 "use client"
 
 import { createContext, ReactNode, useContext, useState } from "react"
-
-type TUser = {
-  email: string
-  name: string
-  birthday: string
-  gender: string
-  phoneNumber: string
-}
+import { TUser } from "@/src/domain/types/user"
 
 type TAuthContextType = {
   user: TUser | null
@@ -21,6 +14,7 @@ type TAuthContextType = {
   setFilterPages: React.Dispatch<React.SetStateAction<string[]>>
   setUser: (user: TUser) => void
   setUserName: (name: string) => void
+  setUserCheck: (name: string) => void
   setPhoneNum: (phone: string) => void
   setBirthday: () => void
   handleYear: (input: string) => void
@@ -47,6 +41,7 @@ export const SignupProvider = ({ children }: IAuthProviderProps) => {
     birthday: "",
     gender: "",
     phoneNumber: "",
+    accessToken: "",
   })
 
   const [error, setError] = useState(false)
@@ -73,10 +68,18 @@ export const SignupProvider = ({ children }: IAuthProviderProps) => {
   const koreanRegex = /^[가-힣]{2,6}$/
 
   const setUserName = (name: string) => {
-    if (name.length > 6) return
+    // if (name.length > 6) return
 
     setUser(prev => ({ ...prev, name }))
     if (!koreanRegex.test(name) && name !== "") {
+      setError(true)
+    } else {
+      setError(false)
+    }
+  }
+
+  const setUserCheck = () => {
+    if (!koreanRegex.test(user?.name ?? "") && user?.name !== "") {
       setError(true)
     } else {
       setError(false)
@@ -163,6 +166,7 @@ export const SignupProvider = ({ children }: IAuthProviderProps) => {
         backPage,
         setUser,
         setFilterPages,
+        setUserCheck,
       }}
     >
       {children}

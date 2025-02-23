@@ -8,6 +8,7 @@ import GenderBox from "@/src/domain/signup/components/gender-box"
 import NextButton from "@/src/domain/signup/components/next-button"
 import Title from "@/src/domain/signup/components/title"
 import useSignup from "@/src/domain/signup/context/signup-context"
+import { TUser } from "@/src/domain/types/user"
 
 const parseEmail = (email: string = "") => {
   const [local, domain] = email.split("@")
@@ -15,12 +16,13 @@ const parseEmail = (email: string = "") => {
 }
 
 const Page = () => {
-  const { user, error, setUserName, phoneError, setPhoneNum, setBirthday, isValidTotal, currentIndex } = useSignup()
+  const { setUser, setUserName, setUserCheck, user, error, phoneError, setPhoneNum, isValidTotal, currentIndex } =
+    useSignup()
   const { local, domain } = parseEmail(user?.email)
   const [checked, setChecked] = useState<[boolean, boolean]>([false, false])
 
   useEffect(() => {
-    setUserName(user?.name ?? "")
+    setUserCheck(user?.name ?? "")
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -50,16 +52,13 @@ const Page = () => {
     setChecked([false, event.target.checked])
   }
 
-  const handleClick = () => {
-    setBirthday()
-    if (checked[0] === true && user) {
-      user.gender = "MALE"
-    } else if (checked[1] === true && user) {
-      user.gender = "FEMALE"
-    } else {
-      return
-    }
-  }
+  useEffect(() => {
+    setUser({
+      ...user,
+      gender: checked[0] ? "MALE" : "FEMALE",
+    } as TUser)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checked])
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -107,9 +106,7 @@ const Page = () => {
         <GenderBox checked={checked} handleChangeMale={handleChangeMale} handleChangeFemale={handleChangeFemale} />
       </div>
 
-      <NextButton isActive={checked.some(Boolean) && isValidTotal()} onClick={handleClick}>
-        다음
-      </NextButton>
+      <NextButton isActive={checked.some(Boolean) && isValidTotal()}>다음</NextButton>
     </div>
   )
 }

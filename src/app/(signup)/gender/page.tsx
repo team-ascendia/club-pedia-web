@@ -1,14 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Header from "@/src/common/components/bar/header"
 import GenderBox from "@/src/domain/signup/components/gender-box"
 import NextButton from "@/src/domain/signup/components/next-button"
 import Title from "@/src/domain/signup/components/title"
 import useSignup from "@/src/domain/signup/context/signup-context"
+import { TUser } from "@/src/domain/types/user"
 
 const Page = () => {
-  const { user, currentIndex, nextPage, NextPageName } = useSignup()
+  const { setUser, user, currentIndex, nextPage, NextPageName } = useSignup()
   const [checked, setChecked] = useState<[boolean, boolean]>([false, false])
 
   const handleChangeMale = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,15 +20,16 @@ const Page = () => {
     setChecked([false, event.target.checked])
   }
 
+  useEffect(() => {
+    setUser({
+      ...user,
+      gender: checked[0] ? "MALE" : "FEMALE",
+    } as TUser)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checked])
+
   const handleClick = () => {
     nextPage()
-    if (checked[0] === true && user) {
-      user.gender = "MALE"
-    } else if (checked[1] === true && user) {
-      user.gender = "FEMALE"
-    } else {
-      return
-    }
   }
 
   return (
