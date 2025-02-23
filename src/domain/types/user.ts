@@ -9,3 +9,12 @@ export interface IUserData {
   isLocationTermAgreed: boolean
   isMarketingAgreed: boolean
 }
+
+export type TUser = {
+  email: string
+  name: string
+  birthday: string
+  gender: string
+  phoneNumber: string
+  accessToken: string
+}
