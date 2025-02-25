@@ -5,7 +5,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { PropsWithChildren } from "react"
 import { ModalProvider } from "@/src/common/module/modal-manager"
 import { getQueryClient } from "@/src/common/util/tanstack-query/get-query-client"
-import MSWComponent from "@/src/mocks/msw-component"
 
 const RootProvider = (props: PropsWithChildren) => {
   const { children } = props
@@ -13,10 +12,8 @@ const RootProvider = (props: PropsWithChildren) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MSWComponent>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <ModalProvider>{children}</ModalProvider>
-      </MSWComponent>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <ModalProvider>{children}</ModalProvider>
     </QueryClientProvider>
   )
 }
