@@ -2,7 +2,7 @@ import { OverlayReducerAction, overlayReducer } from "./reducer"
 
 type ModalId = string
 
-export type CloseHandler = (props: { closeWithRoute?: { url: string } }) => void
+export type CloseHandler = (props?: { closeWithRoute?: { url: string } }) => void
 
 export type ModalComponentRequiredProps = {
   close: CloseHandler
@@ -26,7 +26,6 @@ export type ModalItem<T> = {
   componentProps: WithoutModalHandlerProps<T>
   id: ModalId
   isOpen: boolean
-  unmountPromise?: (() => Promise<any>) | null
 }
 
 export type ModalData = {

@@ -20,7 +20,7 @@ interface SignBottomSheetProps {
   userInfo: UserInfoResponse
 }
 
-const SignBottomSheet = withModalHoc<SignBottomSheetProps>(({ close }) => {
+const SignBottomSheet = withModalHoc<SignBottomSheetProps>(({ close, isOpen }) => {
   const [terms, setTerms] = useState(defaultTermState)
 
   const isAllChecked = Object.values(terms).every(Boolean)
@@ -36,7 +36,9 @@ const SignBottomSheet = withModalHoc<SignBottomSheetProps>(({ close }) => {
 
   return (
     <ModalLayout
+      withBottomSheetAnimation
       close={close}
+      isOpen={isOpen}
       className="bottom-0 max-h-[90vh] w-full select-none rounded-t-[15px] bg-white px-[25px] pb-[40px] pt-[23px]"
     >
       <div className="flex flex-col items-center gap-[29px]">
