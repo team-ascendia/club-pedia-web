@@ -23,7 +23,7 @@ const NextButton: React.FC<NextButtonProps> = ({ isActive = false, nextPath, onC
     <button
       disabled={!isActive}
       onClick={handleClick}
-      className={`rounded-2 mb-14 flex w-full items-center justify-center px-6 py-[14px] text-base text-white 
+      className={`text-title6 rounded-2 mb-14 flex w-full items-center justify-center px-6 py-[14px] text-white 
       ${isActive ? "bg-primary-400 " : "bg-gray-300"} 
       transition-colors duration-300`}
     >

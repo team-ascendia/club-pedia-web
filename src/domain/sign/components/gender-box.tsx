@@ -3,20 +3,17 @@
 import CircleChecked from "@mui/icons-material/RadioButtonChecked"
 import CircleUnchecked from "@mui/icons-material/RadioButtonUnchecked"
 import Checkbox from "@mui/material/Checkbox"
+import useSignup from "@/src/domain/sign/context/signup-context"
 
-interface IGenderProps {
-  checked: [boolean, boolean]
-  handleChangeMale: (event: React.ChangeEvent<HTMLInputElement>) => void
-  handleChangeFemale: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
+const GenderBox = () => {
+  const { setGender, user } = useSignup()
 
-const GenderBox: React.FC<IGenderProps> = ({ checked, handleChangeMale, handleChangeFemale }) => {
   return (
     <div className="flex gap-x-12">
-      <div className="flex items-center gap-x-1">
+      <div className="text-body2 flex items-center gap-x-1">
         <Checkbox
-          checked={checked[0]}
-          onChange={handleChangeMale}
+          checked={user?.gender === "MALE"}
+          onChange={() => setGender("MALE")}
           icon={<CircleUnchecked style={{ color: "#BDBDBD" }} />}
           checkedIcon={<CircleChecked />}
           sx={{
@@ -28,10 +25,11 @@ const GenderBox: React.FC<IGenderProps> = ({ checked, handleChangeMale, handleCh
         />
         남성
       </div>
-      <div className="flex items-center gap-x-1">
+
+      <div className="text-body2 flex items-center gap-x-1">
         <Checkbox
-          checked={checked[1]}
-          onChange={handleChangeFemale}
+          checked={user?.gender === "FEMALE"}
+          onChange={() => setGender("FEMALE")}
           icon={<CircleUnchecked style={{ color: "#BDBDBD" }} />}
           checkedIcon={<CircleChecked />}
           sx={{

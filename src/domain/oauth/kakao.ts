@@ -1,8 +1,8 @@
-interface IKakaoProps {
+interface KakaoProps {
   redirectUri?: string
 }
 
-const Kakao = (props: IKakaoProps) => {
+const Kakao = (props: KakaoProps) => {
   const { redirectUri } = props
   const JAVASCRIPT_KEY = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY
   const scope = "account_email"

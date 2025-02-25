@@ -1,10 +1,10 @@
 "use client"
 
 import { createContext, ReactNode, useContext, useState } from "react"
-import { TUser } from "@/src/domain/types/user"
+import { User } from "@/src/domain/types/user"
 
-type TAuthContextType = {
-  user: TUser | null
+type AuthContextType = {
+  user: User | null
   year: string
   month: string
   day: string
@@ -12,11 +12,12 @@ type TAuthContextType = {
   phoneError: boolean
   filterPages: string[]
   setFilterPages: React.Dispatch<React.SetStateAction<string[]>>
-  setUser: (user: TUser) => void
+  setUser: (user: User) => void
   setUserName: (name: string) => void
   setUserCheck: (name: string) => void
   setPhoneNum: (phone: string) => void
   setBirthday: () => void
+  setGender: (gender: string) => void
   handleYear: (input: string) => void
   handleMonth: (input: string) => void
   handleDay: (input: string) => void
@@ -28,14 +29,14 @@ type TAuthContextType = {
   currentIndex: number
 }
 
-const AuthContext = createContext<TAuthContextType | undefined>(undefined)
+const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-interface IAuthProviderProps {
+interface AuthProviderProps {
   children: ReactNode
 }
 
-export const SignupProvider = ({ children }: IAuthProviderProps) => {
-  const [user, setUser] = useState<TUser>({
+export const SignupProvider = ({ children }: AuthProviderProps) => {
+  const [user, setUser] = useState<User>({
     name: "",
     email: "",
     birthday: "",
@@ -98,6 +99,10 @@ export const SignupProvider = ({ children }: IAuthProviderProps) => {
     } else {
       setPhoneError(false)
     }
+  }
+
+  const setGender = (input: string) => {
+    setUser(prev => ({ ...prev, gender: input }))
   }
 
   const handleYear = (input: string) => setYear(input.replace(/\D/g, ""))
@@ -167,6 +172,7 @@ export const SignupProvider = ({ children }: IAuthProviderProps) => {
         setUser,
         setFilterPages,
         setUserCheck,
+        setGender,
       }}
     >
       {children}
@@ -174,7 +180,7 @@ export const SignupProvider = ({ children }: IAuthProviderProps) => {
   )
 }
 
-const useSignup = (): TAuthContextType => {
+const useSignup = (): AuthContextType => {
   const context = useContext(AuthContext)
 
   if (!context) {

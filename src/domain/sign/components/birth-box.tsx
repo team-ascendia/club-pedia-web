@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import useSignup from "@/src/domain/signup/context/signup-context"
+import useSignup from "@/src/domain/sign/context/signup-context"
 
 const BirthBox = () => {
   const { year, month, day, handleYear, handleMonth, handleDay, setBirthday } = useSignup()
