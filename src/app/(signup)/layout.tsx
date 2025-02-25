@@ -1,6 +1,6 @@
 import Script from "next/script"
 import { PropsWithChildren } from "react"
-import { SignupProvider } from "@/src/domain/signup/context/signup-context"
+import { SignupProvider } from "@/src/domain/sign/context/signup-context"
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (

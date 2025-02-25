@@ -2,9 +2,9 @@
 
 import CircleChecked from "@mui/icons-material/CheckCircleOutline"
 import Header from "@/src/common/components/bar/header"
-import NextButton from "@/src/domain/signup/components/next-button"
-import Title from "@/src/domain/signup/components/title"
-import useSignup from "@/src/domain/signup/context/signup-context"
+import NextButton from "@/src/domain/sign/components/next-button"
+import Title from "@/src/domain/sign/components/title"
+import useSignup from "@/src/domain/sign/context/signup-context"
 
 const Page = () => {
   const { user, phoneError, setPhoneNum, currentIndex, nextPage, NextPageName } = useSignup()
@@ -30,7 +30,7 @@ const Page = () => {
           />
         </div>
         {phoneError && (
-          <div className="text-12 mt-2 flex items-center gap-x-1  text-[#FF0000]">
+          <div className="text-body6 mt-2 flex items-center gap-x-1  text-[#FF0000]">
             <CircleChecked fontSize="small" style={{ fontSize: "12px" }} />
             전화번호가 올바르지 않습니다
           </div>

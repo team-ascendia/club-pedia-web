@@ -3,9 +3,9 @@
 import { Icon } from "@iconify/react"
 import CircleChecked from "@mui/icons-material/CheckCircleOutline"
 import Header from "@/src/common/components/bar/header"
-import NextButton from "@/src/domain/signup/components/next-button"
-import Title from "@/src/domain/signup/components/title"
-import useSignup from "@/src/domain/signup/context/signup-context"
+import NextButton from "@/src/domain/sign/components/next-button"
+import Title from "@/src/domain/sign/components/title"
+import useSignup from "@/src/domain/sign/context/signup-context"
 
 const Page = () => {
   const { user, error, setUserName, nextPage, currentIndex, NextPageName } = useSignup()
@@ -38,7 +38,7 @@ const Page = () => {
           <Icon onClick={handleClear} icon="lets-icons:close-ring-duotone" className="text-xl" />
         </div>
         {error && (
-          <div className="text-12 mt-2 flex flex-col text-[#FF0000]">
+          <div className="text-body6 mt-2 flex flex-col text-[#FF0000]">
             <div className="flex items-center gap-x-1">
               <CircleChecked fontSize="small" style={{ fontSize: "12px" }} />
               최소 2글자 이상 작성해야 합니다.

@@ -2,34 +2,20 @@
 
 import { Icon } from "@iconify/react"
 import Header from "@/src/common/components/bar/header"
+import handleGoogleLogin from "@/src/domain/oauth/google"
 import Kakao from "@/src/domain/oauth/kakao"
+import handleNaverLogin from "@/src/domain/oauth/naver"
 
 const Page = () => {
   const handleKakaoLogin = () => {
     Kakao({ redirectUri: process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URL })
   }
 
-  const handleGoogleLogin = () => {
-    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?
-		client_id=${process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID}
-		&redirect_uri=${process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URL}
-		&response_type=code
-		&scope=email profile`
-  }
-
-  const handleNaverLogin = () => {
-    const NAVER_CLIENT_ID = process.env.NEXT_PUBLIC_NAVER_AUTH_CLIENT_ID
-    const REDIRECT_URI = process.env.NEXT_PUBLIC_NAVER_REDIRECT_URL
-    const STATE = Math.random().toString(36).substring(2, 15)
-    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&state=${STATE}&redirect_uri=${REDIRECT_URI}`
-    window.location.href = NAVER_AUTH_URL
-  }
-
   return (
     <div>
       <Header title="회원가입" showClose />
-      <div className="font-pretendard mb-80 mt-[52px] whitespace-pre-line text-[24px] font-semibold leading-normal tracking-[-0.48px]">
-        회원가입을 통해{"\n"} 재밌는 클럽 소식을{"\n"} 손쉽게 얻어가세요 🎉
+      <div className="text-title1 mb-80 mt-[52px] whitespace-pre-line leading-normal tracking-[-0.48px]">
+        클럽의 모든 정보를 한 눈에!{"\n"}쉽고 빠르게 가입하고{"\n"}원하는 클럽을 찾아보세요 🎉
       </div>
       <div className="flex flex-col gap-y-5">
         <button

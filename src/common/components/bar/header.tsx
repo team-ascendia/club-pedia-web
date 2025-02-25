@@ -2,7 +2,7 @@
 
 import { Icon } from "@iconify/react"
 import { useRouter } from "next/navigation"
-import useSignup from "@/src/domain/signup/context/signup-context"
+import useSignup from "@/src/domain/sign/context/signup-context"
 
 interface HeaderProps {
   title?: string
@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ title, showClose = false, showBack = fa
           <Icon icon="mingcute:left-line" className="text-xl" />
         </button>
       )}
-      {title && <div className="grow text-center text-lg font-bold">{title}</div>}
+      {title && <div className="text-title4 grow text-center">{title}</div>}
       {showClose && (
         <button onClick={handleClose} className="text-lg">
           ✕
