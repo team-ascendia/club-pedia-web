@@ -39,6 +39,7 @@ const Page = () => {
         <Header showBack />
         <Title index={currentIndex} title="정보를 확인해주세요" />
         <div className="text-body6 mb-2 mt-3">이메일</div>
+
         <div className="flex gap-x-2 text-base font-normal">
           <div className="h-6 w-40 border-b border-gray-400 pb-1">{local}</div>@
           <div className="h-6 w-36 border-b border-gray-400 pb-1">{domain}</div>

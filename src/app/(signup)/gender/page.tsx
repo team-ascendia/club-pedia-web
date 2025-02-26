@@ -21,7 +21,6 @@ const Page = () => {
         <Title index={currentIndex} title="성별을 입력해주세요" />
         <GenderBox />
       </div>
-
       <NextButton onClick={handleClick} nextPath={`/${NextPageName}`} isActive={!!user?.gender}>
         다음
       </NextButton>
