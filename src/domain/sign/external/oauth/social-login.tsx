@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query"
 import { setCookie } from "cookies-next"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
-import signApi from "@/src/domain/api"
+import signApi from "@/src/domain/sign/api"
 import useSignup from "@/src/domain/sign/context/signup-context"
 
 interface SocialType {
