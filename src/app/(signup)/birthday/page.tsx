@@ -1,16 +1,19 @@
 "use client"
 
 import Header from "@/src/common/components/bar/header"
-import BirthBox from "@/src/domain/signup/components/birth-box"
-import NextButton from "@/src/domain/signup/components/next-button"
-import Title from "@/src/domain/signup/components/title"
-import useSignup from "@/src/domain/signup/context/signup-context"
+import BirthBox from "@/src/domain/sign/components/birth-box"
+import NextButton from "@/src/domain/sign/components/next-button"
+import Title from "@/src/domain/sign/components/title"
+import useSignup from "@/src/domain/sign/context/signup-context"
 
 const Page = () => {
-  const { setBirthday, isValidBirth, currentIndex, nextPage, NextPageName } = useSignup()
+  const { day, month, handleMonth, handleDay, setBirthday, isValidBirth, currentIndex, nextPage, NextPageName } =
+    useSignup()
 
   const handleNext = () => {
     setBirthday()
+    handleMonth(month.padStart(2, "0"))
+    handleDay(day.padStart(2, "0"))
     nextPage()
   }
 

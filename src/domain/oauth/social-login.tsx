@@ -4,14 +4,14 @@ import { useMutation } from "@tanstack/react-query"
 import { setCookie } from "cookies-next"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
-import { socialLogin } from "@/src/domain/signup/apis"
-import useSignup from "@/src/domain/signup/context/signup-context"
+import signApi from "@/src/domain/api"
+import useSignup from "@/src/domain/sign/context/signup-context"
 
-interface ISocialType {
+interface SocialType {
   socialType: string
 }
 
-const SocialLogin = ({ socialType }: ISocialType) => {
+const SocialLogin = ({ socialType }: SocialType) => {
   const router = useRouter()
   const { setFilterPages, setUser, handleYear, handleMonth, handleDay } = useSignup()
   const redirectUriMap: Record<string, string | undefined> = {
@@ -23,7 +23,7 @@ const SocialLogin = ({ socialType }: ISocialType) => {
   const redirectUri = redirectUriMap[socialType]
 
   const { mutate, isPending, isError } = useMutation({
-    mutationFn: async (code: string) => socialLogin(socialType, code, redirectUri),
+    mutationFn: async (code: string) => signApi.socialLogin(socialType, code, redirectUri),
     onSuccess: data => {
       const formattedBirthday = data?.birthday?.split("T")[0]
       const [year, month, day] = formattedBirthday ? formattedBirthday.split("-") : ["", "", ""]
