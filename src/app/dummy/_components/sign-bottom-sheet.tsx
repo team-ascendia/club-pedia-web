@@ -1,37 +1,48 @@
+import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
 import RoundedCheckInput from "@/src/common/components/button/rounded-check-input"
 import ModalLayout from "@/src/common/components/modal/modal-layout"
 import withModalHoc from "@/src/common/components/modal/with-modal-hoc"
+import signApi from "@/src/domain/sign/api"
 import TermItem from "@/src/domain/sign/components/term-item"
-import { TermList, defaultTermState } from "@/src/domain/sign/constants/index "
-
-type UserInfoResponse = {
-  email: string
-  name: string
-  gender: string
-  birthday: string
-  phone: string
-
-  accessToken: string
-  refreshToken: string
-}
+import { TermList, TermNames, defaultTermState } from "@/src/domain/sign/constants/index "
+import { MemberActivationRequest } from "@/src/domain/sign/type"
+import { TUser } from "@/src/domain/types/user"
 
 interface SignBottomSheetProps {
-  userInfo: UserInfoResponse
+  userInfo: TUser
 }
 
-const SignBottomSheet = withModalHoc<SignBottomSheetProps>(({ close }) => {
+const SignBottomSheet = withModalHoc<SignBottomSheetProps>(({ close, userInfo }) => {
   const [terms, setTerms] = useState(defaultTermState)
+
+  console.log("user", userInfo)
 
   const isAllChecked = Object.values(terms).every(Boolean)
   const disabled = !TermList.filter(({ required }) => required).every(({ name }) => terms[name])
 
   const checkAll = () => {
-    setTerms(Object.fromEntries(Object.keys(terms).map(key => [key, !isAllChecked])))
+    const newTerms = { ...terms }
+    Object.keys(newTerms).forEach(key => {
+      newTerms[key as TermNames] = !isAllChecked
+    })
+    setTerms(newTerms)
   }
 
+  const memberActivation = useMutation({
+    mutationFn: signApi.memberActivation,
+  })
   const handleClickStart = () => {
-    alert("시작~")
+    const { accessToken, ...rest } = userInfo
+
+    const request: MemberActivationRequest = {
+      ...rest,
+      ...terms,
+    }
+    memberActivation.mutate({
+      request: request,
+      accessToken,
+    })
   }
 
   return (

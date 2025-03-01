@@ -2,7 +2,9 @@
 
 import CircleChecked from "@mui/icons-material/CheckCircleOutline"
 import { useEffect } from "react"
+import SignBottomSheet from "@/src/app/dummy/_components/sign-bottom-sheet"
 import Header from "@/src/common/components/bar/header"
+import { modalManager } from "@/src/common/module/modal-manager"
 import BirthBox from "@/src/domain/sign/components/birth-box"
 import GenderBox from "@/src/domain/sign/components/gender-box"
 import NextButton from "@/src/domain/sign/components/next-button"
@@ -31,6 +33,18 @@ const Page = () => {
   const handlePhoneNumber = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value
     setPhoneNum(input)
+  }
+
+  const handleClickNextButton = () => {
+    if (!user) return
+
+    modalManager.open({
+      Component: SignBottomSheet,
+      componentProps: {
+        userInfo: user,
+      },
+      id: "terms-bottom-sheet",
+    })
   }
 
   return (

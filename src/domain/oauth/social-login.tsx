@@ -19,7 +19,6 @@ const SocialLogin = ({ socialType }: SocialType) => {
     google: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URL,
     naver: process.env.NEXT_PUBLIC_NAVER_REDIRECT_URL,
   }
-
   const redirectUri = redirectUriMap[socialType]
 
   const { mutate, isPending, isError } = useMutation({
