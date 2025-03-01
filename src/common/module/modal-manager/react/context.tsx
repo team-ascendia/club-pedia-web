@@ -1,6 +1,6 @@
 "use client"
 
-import { PropsWithChildren, createContext, useEffect, useMemo } from "react"
+import { PropsWithChildren, createContext } from "react"
 import ModalController from "./modal-controller"
 import useSyncModalStore from "./use-sync-overlay-store"
 import { createOverlay } from "@/src/common/module/modal-manager/core/event"
@@ -15,27 +15,11 @@ const createModalProvider = (modalStore: ModalStore) => {
     const { children } = props
     const modalState = useSyncModalStore(modalStore)
 
-    const popStateCloseHandler = () => {
-      if (!modalState.current) return
-
-      modalManager.unmount(modalState.current)
-    }
-    useEffect(() => {
-      window.addEventListener("popstate", popStateCloseHandler)
-      return () => {
-        window.removeEventListener("popstate", popStateCloseHandler)
-      }
-    }, [modalState])
-
-    const isProcessingClose = useMemo(() => {
-      return Object.entries(modalState.modalData).some(([_, data]) => !data.isOpen)
-    }, [modalState.modalData])
-
     return (
       <ModalContext value={null}>
         {children}
         {modalState.modalOrderList.map(item => {
-          const { id, Component, componentProps, isOpen, unmountPromise } = modalState.modalData[item]
+          const { id, Component, componentProps, isOpen } = modalState.modalData[item]
           return (
             <ModalController
               key={id}
@@ -52,8 +36,6 @@ const createModalProvider = (modalStore: ModalStore) => {
               onUnmountModal={() => modalManager.unmount(id)}
               onClearModal={() => modalManager.unmountAll()}
               current={modalState.current}
-              processingClose={isProcessingClose}
-              unmountPromise={unmountPromise}
             />
           )
         })}

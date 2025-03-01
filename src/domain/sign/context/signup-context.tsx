@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, ReactNode, useContext, useState } from "react"
-import { User } from "@/src/domain/types/user"
+import { User } from "@/src/common/types/user"
 
 type AuthContextType = {
   user: User | null

@@ -1,4 +1,4 @@
-import SocialLogin from "@/src/domain/oauth/social-login"
+import SocialLogin from "@/src/domain/sign/external/oauth/social-login"
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const validSocialTypes = ["google", "kakao", "naver"]

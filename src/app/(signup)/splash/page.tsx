@@ -2,9 +2,9 @@
 
 import { Icon } from "@iconify/react"
 import Header from "@/src/common/components/bar/header"
-import handleGoogleLogin from "@/src/domain/oauth/google"
-import Kakao from "@/src/domain/oauth/kakao"
-import handleNaverLogin from "@/src/domain/oauth/naver"
+import handleGoogleLogin from "@/src/domain/sign/external/oauth/google"
+import Kakao from "@/src/domain/sign/external/oauth/kakao"
+import handleNaverLogin from "@/src/domain/sign/external/oauth/naver"
 
 const Page = () => {
   const handleKakaoLogin = () => {

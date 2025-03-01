@@ -13,7 +13,8 @@ const RootProvider = (props: PropsWithChildren) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <ModalProvider>{children}</ModalProvider>
+      <ModalProvider />
+      {children}
     </QueryClientProvider>
   )
 }
