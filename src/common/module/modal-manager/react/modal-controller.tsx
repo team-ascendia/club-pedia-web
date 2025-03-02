@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation"
 import React, { useEffect, useRef } from "react"
 import { CloseHandler, ModalComponentRequiredProps, ModalItem } from "@/src/common/module/modal-manager/core/store"
 
@@ -14,6 +15,7 @@ const ModalController = (props: ModalControllerProps) => {
     props
   const prevCurrent = useRef(current)
   const onMountedRef = useRef(onMounted)
+  const router = useRouter()
 
   if (prevCurrent.current !== current && isOpen === false) {
     prevCurrent.current = current
@@ -31,7 +33,9 @@ const ModalController = (props: ModalControllerProps) => {
     onCloseModal()
 
     if (props && props.closeWithRoute) {
+      const { url } = props.closeWithRoute
       onClearModal()
+      router.push(url)
       return
     }
 

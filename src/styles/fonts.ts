@@ -19,7 +19,7 @@ const appleFont = localFont({
     },
     {
       path: "../../public/fonts/AppleSDGothicNeo-ExtraBold.woff2",
-      weight: "700",
+      weight: "800",
       style: "extrabold",
     },
   ],
