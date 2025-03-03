@@ -1,43 +1,68 @@
+import { useMutation } from "@tanstack/react-query"
+import { setCookie } from "cookies-next/client"
 import { useState } from "react"
 import RoundedCheckInput from "@/src/common/components/button/rounded-check-input"
 import ModalLayout from "@/src/common/components/modal/modal-layout"
 import withModalHoc from "@/src/common/components/modal/with-modal-hoc"
+import { User } from "@/src/common/types/user"
+import signApi from "@/src/domain/sign/api"
 import TermItem from "@/src/domain/sign/components/term-item"
-import { TermList, defaultTermState } from "@/src/domain/sign/constants/index "
-
-type UserInfoResponse = {
-  email: string
-  name: string
-  gender: string
-  birthday: string
-  phone: string
-
-  accessToken: string
-  refreshToken: string
-}
+import { TermList, TermNames, defaultTermState } from "@/src/domain/sign/constants/index "
+import { MemberActivationRequest } from "@/src/domain/sign/type"
 
 interface SignBottomSheetProps {
-  userInfo: UserInfoResponse
+  userInfo: User
 }
 
-const SignBottomSheet = withModalHoc<SignBottomSheetProps>(({ close }) => {
+const SignBottomSheet = withModalHoc<SignBottomSheetProps>(({ close, userInfo, isOpen }) => {
   const [terms, setTerms] = useState(defaultTermState)
 
   const isAllChecked = Object.values(terms).every(Boolean)
   const disabled = !TermList.filter(({ required }) => required).every(({ name }) => terms[name])
 
   const checkAll = () => {
-    setTerms(Object.fromEntries(Object.keys(terms).map(key => [key, !isAllChecked])))
+    const newTerms = { ...terms }
+    Object.keys(newTerms).forEach(key => {
+      newTerms[key as TermNames] = !isAllChecked
+    })
+    setTerms(newTerms)
   }
 
+  const memberActivation = useMutation({
+    mutationFn: signApi.memberActivation,
+  })
+
   const handleClickStart = () => {
-    alert("시작~")
+    const { accessToken, ...rest } = userInfo
+
+    const request: MemberActivationRequest = {
+      ...rest,
+      ...terms,
+    }
+    memberActivation.mutate(
+      {
+        request: request,
+        accessToken,
+      },
+      {
+        onSuccess: () => {
+          setCookie("accessToken", accessToken)
+          close({
+            closeWithRoute: {
+              url: "/",
+            },
+          })
+        },
+      },
+    )
   }
 
   return (
     <ModalLayout
+      withBottomSheetAnimation
+      isOpen={isOpen}
       close={close}
-      className="bottom-0 max-h-[90vh] w-full select-none rounded-t-[15px] bg-white px-[25px] pb-[40px] pt-[23px]"
+      className="max-h-[90vh] w-full select-none rounded-t-[15px] bg-white px-[25px] pb-[40px] pt-[23px]"
     >
       <div className="flex flex-col items-center gap-[29px]">
         <p className="text-title1">약관동의</p>

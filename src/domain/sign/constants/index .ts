@@ -1,11 +1,4 @@
-type TermItem = {
-  title: string
-  term: string
-  required: boolean
-  name: string
-}
-
-export const TermList: TermItem[] = [
+export const TermList = [
   {
     title: "서비스 이용 약관",
     required: true,
@@ -36,9 +29,11 @@ export const TermList: TermItem[] = [
     term: "",
     name: "isMarketingAgreed",
   },
-]
+] as const
 
-export const defaultTermState = TermList.reduce(
+export type TermNames = (typeof TermList)[number]["name"]
+
+export const defaultTermState: Record<TermNames, boolean> = TermList.reduce(
   (acc, { name }) => ({ ...acc, [name]: false }),
-  {} as Record<string, boolean>,
+  {} as Record<TermNames, boolean>,
 )

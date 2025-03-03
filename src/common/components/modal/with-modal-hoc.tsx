@@ -8,8 +8,6 @@ function withModalHoc<T extends object>(Component: React.ComponentType<WithModal
   return function WrappedComponent(props: WithModalHocProps<T>) {
     const { isOpen, close, ...restProps } = props
 
-    if (!isOpen) return null
-
     return (
       <div className="fixed inset-0 flex h-screen w-full bg-black/50">
         <div className="relative size-full md:mx-auto md:max-w-[390px]">

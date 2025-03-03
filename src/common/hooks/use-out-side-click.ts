@@ -2,16 +2,22 @@
 
 import { RefObject, useEffect } from "react"
 
-function useOutsideClick<T extends HTMLElement>(ref: RefObject<T | null>, callback: () => void) {
+type UseOutSideClickProps<T> = {
+  ref: RefObject<T | null>
+  callback: () => void
+}
+
+const useOutsideClick = (props: UseOutSideClickProps<HTMLElement>) => {
+  const { callback, ref } = props
   useEffect(() => {
     function handleClickOutside(event: MouseEvent | TouchEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      if (event.which === 1 && ref.current && !ref.current.contains(event.target as Node)) {
         callback()
       }
     }
 
     document.addEventListener("mousedown", handleClickOutside)
-    document.addEventListener("touchstart", handleClickOutside) // 모바일 대응
+    document.addEventListener("touchstart", handleClickOutside)
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)

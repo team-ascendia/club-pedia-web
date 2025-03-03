@@ -3,9 +3,11 @@
 import CircleChecked from "@mui/icons-material/CheckCircleOutline"
 import { useEffect } from "react"
 import Header from "@/src/common/components/bar/header"
+import { modalManager } from "@/src/common/module/modal-manager"
 import BirthBox from "@/src/domain/sign/components/birth-box"
 import GenderBox from "@/src/domain/sign/components/gender-box"
 import NextButton from "@/src/domain/sign/components/next-button"
+import SignBottomSheet from "@/src/domain/sign/components/sign-bottom-sheet"
 import Title from "@/src/domain/sign/components/title"
 import useSignup from "@/src/domain/sign/context/signup-context"
 
@@ -33,12 +35,25 @@ const Page = () => {
     setPhoneNum(input)
   }
 
+  const handleClickNextButton = () => {
+    if (!user) return
+
+    modalManager.open({
+      Component: SignBottomSheet,
+      componentProps: {
+        userInfo: user,
+      },
+      id: "terms-bottom-sheet",
+    })
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
       <div className="grow">
         <Header showBack />
         <Title index={currentIndex} title="정보를 확인해주세요" />
         <div className="text-body6 mb-2 mt-3">이메일</div>
+
         <div className="flex gap-x-2 text-base font-normal">
           <div className="h-6 w-40 border-b border-gray-400 pb-1">{local}</div>@
           <div className="h-6 w-36 border-b border-gray-400 pb-1">{domain}</div>
@@ -79,7 +94,9 @@ const Page = () => {
         <GenderBox />
       </div>
 
-      <NextButton isActive={!!user?.gender && isValidTotal()}>다음</NextButton>
+      <NextButton onClick={handleClickNextButton} isActive={!!user?.gender && isValidTotal()}>
+        다음
+      </NextButton>
     </div>
   )
 }
