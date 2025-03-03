@@ -1,5 +1,3 @@
-// "use client"
-
 import CircleChecked from "@mui/icons-material/RadioButtonChecked"
 import CircleUnchecked from "@mui/icons-material/RadioButtonUnchecked"
 import Checkbox from "@mui/material/Checkbox"
