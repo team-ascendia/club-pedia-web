@@ -1,4 +1,5 @@
-import { Instagram, Logo } from "@/public/icons"
+import Image from "next/image"
+import { Logo } from "@/public/icons"
 import cn from "@/src/common/util/cn"
 
 const Footer = () => {
@@ -6,7 +7,8 @@ const Footer = () => {
     <div className="w-full bg-gray-50 px-6 py-5">
       <div className="mb-3 flex justify-between">
         <Logo className={cn("w-28")} />
-        <Instagram className={cn("w-8")} />
+        <Image src="/icons/instagram.svg" alt="Instagram" width={32} height={32} />
+        {/* <Instagram className={cn("w-8")} /> */}
       </div>
       <div className="text-body2 mb-[52px]">완벽한 밤을 위한 단 하나의 선택</div>
       <div className="text-body6 flex gap-x-[26px]">
