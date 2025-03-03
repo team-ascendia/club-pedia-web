@@ -7,7 +7,7 @@ interface DummyResponse {
 
 const signApi = {
   signup: async (userData: UserDataRequest) => {
-    const response = await KyInstance.post<DummyResponse>("/api/auth/profile", {
+    const response = await KyInstance.post<DummyResponse>("api/auth/profile", {
       json: userData,
     }).json()
 
