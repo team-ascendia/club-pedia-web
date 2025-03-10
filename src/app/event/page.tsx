@@ -32,11 +32,13 @@ const EventPage = async ({ searchParams }: { searchParams: Promise<EventListSear
           <EventFilterList />
         </div>
       </Suspense>
-      <PrefetchBoundary fallback={<BoxSkeleton />} prefetchList={[eventPrefetch]}>
-        <ClubPediaErrorBoundary fallback={DefaultErrorBoundaryFallback}>
-          <EventList />
-        </ClubPediaErrorBoundary>
-      </PrefetchBoundary>
+      <Suspense fallback={<BoxSkeleton />}>
+        <PrefetchBoundary prefetchList={[eventPrefetch]}>
+          <ClubPediaErrorBoundary fallback={DefaultErrorBoundaryFallback}>
+            <EventList />
+          </ClubPediaErrorBoundary>
+        </PrefetchBoundary>
+      </Suspense>
 
       <BottomNavigation />
     </div>
