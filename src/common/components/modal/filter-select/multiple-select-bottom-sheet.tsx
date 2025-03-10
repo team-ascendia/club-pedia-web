@@ -1,28 +1,30 @@
-import { useEffect, useState } from "react"
-import { FilterRequiredProps, RenderItemProps } from "./type"
+import { Fragment, useState } from "react"
+import SelectWarpper from "./select-warpper"
+import { SelectRenderItemProps } from "./type"
+import withModalHoc from "@/src/common/components/modal/hocs/with-modal-hoc"
 import ModalLayout from "@/src/common/components/modal/modal-layout"
-import withModalHoc from "@/src/common/components/modal/with-modal-hoc"
+import { ModalComponentRequiredProps } from "@/src/common/module/modal-manager"
+import { FilterRequiredProps } from "@/src/common/util/types/filter.type"
 
-interface MultiSelectItemBottomSheetProps<T extends FilterRequiredProps> {
+interface MultiSelectItemBottomSheetProps<T extends FilterRequiredProps> extends ModalComponentRequiredProps {
   items: T[]
   defaultData?: T[]
   title: string
-  handleSubmit: (data: T[]) => void
-  renderItem: (props: RenderItemProps<T>) => React.JSX.Element
+  handleSubmit: (data?: T[]) => void
+  renderItem: (props: SelectRenderItemProps<T | undefined>) => React.JSX.Element
+  contentClassName?: string
 }
 
-const MultiSelectItemBottomSheet = withModalHoc<MultiSelectItemBottomSheetProps<FilterRequiredProps>>(
-  ({ close, isOpen, defaultData, handleSubmit, items, renderItem, title }) => {
+const MultiSelectItemBottomSheet = withModalHoc(
+  <T extends FilterRequiredProps>(props: MultiSelectItemBottomSheetProps<T>) => {
+    const { close, isOpen, defaultData, handleSubmit, items, renderItem, title, contentClassName } = props
     const [selectedData, setSelectedData] = useState(defaultData ?? [])
 
-    useEffect(() => {
-      if (defaultData) setSelectedData(defaultData)
-    }, [defaultData])
-
-    const handleItemClick = (item: FilterRequiredProps) => {
+    const handleClickItem = (item?: FilterRequiredProps) => {
       setSelectedData(prev => {
+        if (!item) return []
         const exists = prev.some(selected => selected.id === item.id)
-        return exists ? prev.filter(selected => selected.id !== item.id) : [...prev, item]
+        return exists ? prev.filter(selected => selected.id !== item.id) : ([...prev, item] as T[])
       })
     }
 
@@ -32,38 +34,24 @@ const MultiSelectItemBottomSheet = withModalHoc<MultiSelectItemBottomSheetProps<
     }
 
     return (
-      <ModalLayout
-        withBottomSheetAnimation
-        withBottomSheetDragHandler
-        isOpen={isOpen}
-        close={close}
-        className="rounded-t-3 w-full bg-white pb-6"
-      >
-        <div className="w-full px-6">
-          <div className="flex justify-between">
-            <div className="size-6" />
-            <p className="text-title1">{title}</p>
-            <button className="size-6" onClick={() => close()}>
-              X
-            </button>
-          </div>
-          <div className="flex flex-col">
+      <ModalLayout withBottomSheetAnimation isOpen={isOpen} close={close} className="rounded-t-3 w-full bg-white py-6">
+        <SelectWarpper close={close} handleSubmitClick={handleSubmitClick} title={title}>
+          <div className={contentClassName}>
+            {renderItem({
+              active: selectedData.length === 0,
+              item: undefined,
+              handleClickItem: () => handleClickItem(undefined),
+            })}
             {items.map(item => {
               const active = selectedData.some(selected => selected.id === item.id)
               return (
-                <button className="text-start" key={item.id} onClick={() => handleItemClick(item)}>
-                  {renderItem({ active, item })}
-                </button>
+                <Fragment key={item.id}>
+                  {renderItem({ active, item, handleClickItem: () => handleClickItem(item) })}
+                </Fragment>
               )
             })}
           </div>
-          <button
-            onClick={handleSubmitClick}
-            className="bg-primary-400 rounded-2 text-title6 w-full px-6 py-[14px] text-white"
-          >
-            적용
-          </button>
-        </div>
+        </SelectWarpper>
       </ModalLayout>
     )
   },

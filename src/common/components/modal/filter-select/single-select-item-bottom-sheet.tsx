@@ -1,60 +1,55 @@
 "use client"
 
-import { FilterRequiredProps, RenderItemProps } from "./type"
+import { Fragment, useState } from "react"
+import SelectWarpper from "./select-warpper"
+import { SelectRenderItemProps } from "./type"
+import withModalHoc from "@/src/common/components/modal/hocs/with-modal-hoc"
 import ModalLayout from "@/src/common/components/modal/modal-layout"
-import withModalHoc from "@/src/common/components/modal/with-modal-hoc"
 import { ModalComponentRequiredProps } from "@/src/common/module/modal-manager"
+import { FilterRequiredProps } from "@/src/common/util/types/filter.type"
 
 interface SingleSelectBottomSheetProps<T extends FilterRequiredProps> extends ModalComponentRequiredProps {
   items: T[]
   defaultData?: T
   title: string
-  handleSubmit: (data: T) => void
-  renderItem: (props: RenderItemProps<T>) => React.JSX.Element
+  handleSubmit: (data?: T) => void
+  renderItem: (props: SelectRenderItemProps<T | undefined>) => React.JSX.Element
+  contentClassName?: string
 }
 
-const SingleSelectItemBottomSheet = withModalHoc<SingleSelectBottomSheetProps<FilterRequiredProps>>(
-  <T extends FilterRequiredProps>({
-    close,
-    isOpen,
-    defaultData,
-    handleSubmit,
-    items,
-    renderItem,
-    title,
-  }: SingleSelectBottomSheetProps<T>) => {
-    const handleItemClick = (item: T) => {
-      handleSubmit(item)
+const SingleSelectItemBottomSheet = withModalHoc(
+  <T extends FilterRequiredProps>(props: SingleSelectBottomSheetProps<T>) => {
+    const { close, isOpen, defaultData, handleSubmit, items, renderItem, title, contentClassName } = props
+    const [selectedData, setSelectedData] = useState<T | undefined>(defaultData)
+
+    const handleClickItem = (item?: T) => {
+      setSelectedData(item)
+    }
+
+    const handleSubmitClick = () => {
+      handleSubmit(selectedData)
       close()
     }
 
     return (
-      <ModalLayout
-        withBottomSheetAnimation
-        withBottomSheetDragHandler
-        isOpen={isOpen}
-        close={close}
-        className="rounded-t-3 w-full bg-white pb-6"
-      >
-        <div className="w-full px-6">
-          <div className="flex justify-between">
-            <div className="size-6" />
-            <p className="text-title1">{title}</p>
-            <button className="size-6" onClick={() => close()}>
-              X
-            </button>
-          </div>
-          <div className="flex flex-col">
+      <ModalLayout withBottomSheetAnimation isOpen={isOpen} close={close} className="rounded-t-3 w-full bg-white py-6">
+        <SelectWarpper close={close} handleSubmitClick={handleSubmitClick} title={title}>
+          <div className={contentClassName}>
+            {renderItem({
+              active: !selectedData,
+              item: undefined,
+              handleClickItem: () => handleClickItem(undefined),
+            })}
             {items.map(item => {
-              const active = defaultData?.id === item.id
+              const active = selectedData?.id === item.id
               return (
-                <button className="text-start" key={item.id} onClick={() => handleItemClick(item)}>
-                  {renderItem({ active, item })}
-                </button>
+                <Fragment key={item.id}>
+                  {renderItem({ active, item, handleClickItem: () => handleClickItem(item) })}
+                </Fragment>
               )
             })}
           </div>
-        </div>
+        </SelectWarpper>
       </ModalLayout>
     )
   },

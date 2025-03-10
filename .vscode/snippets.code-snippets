@@ -86,4 +86,20 @@
     ],
     "description": "use clint ttt",
   },
+
+  "custom hook generate": {
+    "prefix": "gnr",
+    "body": [
+      "type ${TM_FILENAME_BASE/(-|^)(\\w)/${2:/upcase}/g}Props = {",
+      "  $0",
+      "}",
+      "",
+      "const ${TM_FILENAME_BASE/^([a-z])|-(\\w)/${1:/downcase}${2:/upcase}/g} = (props: ${TM_FILENAME_BASE/(-|^)(\\w)/${2:/upcase}/g}Props) => {",
+      "  const {} = props",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE/^([a-z])|-(\\w)/${1:/downcase}${2:/upcase}/g}",
+    ],
+    "description": "커스텀 훅을 만들 때 사용합니다.",
+  },
 }

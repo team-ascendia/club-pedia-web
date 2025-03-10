@@ -1,9 +1,5 @@
-export type FilterRequiredProps = {
-  id: number
-  title: string
-}
-
-export type RenderItemProps<T> = {
+export type SelectRenderItemProps<T> = {
   active: boolean
   item: T
+  handleClickItem: () => void
 }

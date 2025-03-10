@@ -13,6 +13,17 @@ const nextConfig: NextConfig = {
 
     return config
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "example.com",
+        pathname: "**",
+      },
+    ],
+  },
+
+  reactStrictMode: false,
 }
 
 export default nextConfig

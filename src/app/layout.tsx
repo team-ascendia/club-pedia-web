@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`md:mx-auto md:max-w-[390px] ${fontClassName} font-pretendard`}>
+      <body className={`md:mx-auto md:max-w-[390px] ${fontClassName} font-pretendard md:shadow-md`}>
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

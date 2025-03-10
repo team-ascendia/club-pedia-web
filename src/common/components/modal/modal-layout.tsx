@@ -1,5 +1,5 @@
 import { PropsWithChildren, useRef } from "react"
-import { useBottomSheetDragClose } from "./use-bottom-sheet-drag"
+import { useBottomSheetDragClose } from "./hooks/use-bottom-sheet-drag"
 import useOutsideClick from "@/src/common/hooks/use-out-side-click"
 import { ModalComponentRequiredProps } from "@/src/common/module/modal-manager"
 import cn from "@/src/common/util/cn"
@@ -35,7 +35,7 @@ const ModalLayout = (props: ModalLayoutProps) => {
   })
 
   return (
-    <div className={cn("flex h-full w-full flex-col rounded-t-4 absolute")} ref={modalRef}>
+    <div className={cn("flex h-full w-full flex-col absolute")} ref={modalRef}>
       <div
         ref={outsideRef}
         className={cn("absolute", className, withBottomSheetAnimation && _getBottomSheetAnimation(isOpen))}
