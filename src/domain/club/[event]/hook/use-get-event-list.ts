@@ -1,4 +1,5 @@
 import { QueryKey, useSuspenseInfiniteQuery } from "@tanstack/react-query"
+import { DEFAULT_QUERY_STALE_TIME } from "@/src/common/util/tanstack-query/get-query-client"
 import eventApi from "@/src/domain/club/[event]/api"
 import { EventListSearchParams } from "@/src/domain/club/[event]/type"
 
@@ -20,6 +21,8 @@ const useGetEventList = (props: UseGetEventListProps) => {
       return lastPage.pagination.page + 1
     },
     initialPageParam: 1,
+    staleTime: DEFAULT_QUERY_STALE_TIME,
+    gcTime: DEFAULT_QUERY_STALE_TIME,
   })
 
   const { data } = queryResult

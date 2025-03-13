@@ -1,31 +1,14 @@
-import { generateListMockData } from "@/src/common/util/mock"
-import { EventListRequestParams } from "@/src/domain/club/[event]/type"
+import KyInstance from "@/src/common/apis/ky-instance"
+import { DefaultListResponse } from "@/src/common/types/default-api.type"
+import { getURLSearchParamsByObject } from "@/src/common/util/search-params"
+import { EventListRequestParams, EventResponse } from "@/src/domain/club/[event]/type"
 
 const eventApi = {
   getEventList: async (params: EventListRequestParams) => {
-    return generateListMockData({
-      pagination: {
-        page: params.page,
-        size: params.pageSize,
-        totalItems: 81,
-      },
-      resolver: index => {
-        return {
-          id: index,
-          title: `event-${index + 1}`,
-          thumbnailImageUrl: undefined,
-          startDate: "2023-01-01",
-          endDate: "2023-01-02",
-          summary: "summary",
-          club: { id: 1, title: "W클럽" },
-          region: { id: 1, title: "화양동" },
-          genres: [
-            { id: 1, title: "EDM" },
-            { id: 2, title: "힙합" },
-          ],
-        }
-      },
-    })
+    const response = await KyInstance.get<DefaultListResponse<EventResponse>>(
+      `events?${getURLSearchParamsByObject(params)}`,
+    ).json()
+    return response
   },
 }
 

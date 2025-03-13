@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { EventIcon } from "@/public/icons"
 import Badge from "@/src/common/components/badge"
@@ -23,8 +24,8 @@ const ClubBox = (props: ClubBoxProps) => {
       <div className="mt-2.5" />
       <div className="flex gap-4">
         <div className="size-[140px] shrink-0 overflow-hidden rounded bg-gray-300">
-          {/* {thumbnailImageUrl && <Image src={thumbnailImageUrl} width={140} height={140} alt="thumbnail" />} */}
-          {thumbnailImageUrl && (
+          {thumbnailImageUrl && <Image src={thumbnailImageUrl} width={140} height={140} alt="thumbnail" />}
+          {!thumbnailImageUrl && (
             <div className="flex size-[140px] items-center justify-center">
               <EventIcon className="text-primary-500 size-6" />
             </div>

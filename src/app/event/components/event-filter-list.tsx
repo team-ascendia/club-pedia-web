@@ -2,17 +2,12 @@
 
 import { RotateIcon } from "@/public/icons"
 import Badge from "@/src/common/components/badge"
-import useHasMounted from "@/src/common/hooks/use-has-mounted"
 import { isAllUndefined } from "@/src/common/util/check-undefined"
 import OpenFilterSheetBadge from "@/src/domain/club/components/open-filter-sheet-badge"
 import useClubFilters from "@/src/domain/club/hooks/use-club-filters"
 
 const EventFilterList = () => {
   const { filters, resetFilters, formatArrayFilter, openSheet, formatDate } = useClubFilters({ queryKey: ["event"] })
-
-  const hasMounted = useHasMounted()
-
-  if (!hasMounted) return null
 
   return (
     <>
