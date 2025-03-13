@@ -16,16 +16,28 @@ const ContentContainer: React.FC<ContainerProps> = ({ title, movePath }) => {
     }
   }
 
-  const isClubList = title === "Event"
+  const isClubList = title !== "Event"
 
   const {
     data: contentList,
     isPending,
     isError,
   } = useQuery<ContentListResponse>({
-    queryFn: () => (isClubList ? homeApi.clubList() : homeApi.eventList()),
+    queryFn: () => {
+      return isClubList ? homeApi.clubList() : homeApi.eventList()
+    },
     queryKey: [isClubList ? "clubList" : "eventList", isClubList],
   })
+
+  // useEffect(() => {
+  //   if (contentList === undefined) {
+  //     console.log("⚠️ contentList가 undefined 상태임")
+  //   } else if (contentList.items.length === 0) {
+  //     console.log("⚠️ contentList.items가 빈 배열임")
+  //   } else {
+  //     console.log("✅ contentList 응답 확인:", JSON.stringify(contentList, null, 2))
+  //   }
+  // }, [contentList])
 
   if (isPending) {
     return <p>로딩중</p>
@@ -33,11 +45,6 @@ const ContentContainer: React.FC<ContainerProps> = ({ title, movePath }) => {
   if (isError) {
     return <p>에러</p>
   }
-
-  // contentList: ContentRequest[] = [
-  //   { name: "Item 1", location: "Seoul" },
-  //   { name: "Item 2", location: "Busan" },
-  // ]
 
   return (
     <div className="mt-[29px] pl-6">
@@ -47,20 +54,18 @@ const ContentContainer: React.FC<ContainerProps> = ({ title, movePath }) => {
           전체 보기 {">"}
         </div>
       </div>
-      <div className="flex gap-x-5">
-        {contentList.totalItems > 0 ? (
-          contentList.items.map(item => (
-            <ContentBox
-              key={item.id}
-              thumbnailImageUrl={item.thumbnailImageUrl}
-              title={item.title}
-              address={item.address}
-            />
-          ))
-        ) : (
-          <NoEvent />
-        )}
-      </div>
+
+      {Array.isArray(contentList?.items) && contentList.items.length > 0 ? (
+        <div className="scrollbar-hide overflow-x-auto whitespace-nowrap">
+          <div className="flex w-max gap-x-5">
+            {contentList.items.slice(0, 6).map(item => (
+              <ContentBox key={item.id} content={item} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <NoEvent />
+      )}
     </div>
   )
 }
