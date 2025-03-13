@@ -1,6 +1,25 @@
 import ArrowLeftIcon from "./arrow-left.svg"
+import CloseIcon from "./close.svg"
+import CommentIcon from "./comment.svg"
+import EventIcon from "./event.svg"
+import HomeIcon from "./home.svg"
+import LocationIcon from "./location.svg"
 import Logo from "./logo.svg"
 import Notify from "./notification.svg"
+import RotateIcon from "./rotate.svg"
 import Search from "./search.svg"
+import UserIcon from "./user.svg"
 
-export { ArrowLeftIcon, Logo, Search, Notify }
+export {
+  ArrowLeftIcon,
+  Logo,
+  Search,
+  Notify,
+  CloseIcon,
+  EventIcon,
+  HomeIcon,
+  LocationIcon,
+  UserIcon,
+  CommentIcon,
+  RotateIcon,
+}

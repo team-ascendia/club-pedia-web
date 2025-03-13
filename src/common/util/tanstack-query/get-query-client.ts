@@ -1,7 +1,7 @@
 // app/get-query-client.ts
 import { isServer, QueryClient, defaultShouldDehydrateQuery } from "@tanstack/react-query"
 
-export const DEFAULT_QUERY_STALE_TIME = 60 * 1000
+export const DEFAULT_QUERY_STALE_TIME = 60 * 60 * 1000
 
 function makeQueryClient() {
   return new QueryClient({

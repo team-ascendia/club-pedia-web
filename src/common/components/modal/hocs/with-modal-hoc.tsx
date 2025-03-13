@@ -9,7 +9,7 @@ function withModalHoc<T extends object>(Component: React.ComponentType<WithModal
     const { isOpen, close, ...restProps } = props
 
     return (
-      <div className="fixed inset-0 flex h-screen w-full bg-black/50">
+      <div className="fixed inset-0 z-[1000] flex h-screen w-full bg-black/50">
         <div className="relative size-full md:mx-auto md:max-w-[390px]">
           <Component {...(restProps as T)} isOpen={isOpen} close={close} />
         </div>
