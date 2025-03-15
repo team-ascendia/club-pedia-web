@@ -15,7 +15,7 @@ const RoundedCheckInput = (props: RoundedCheckInputProps) => {
       <label
         htmlFor={name}
         className={cn(
-          "flex size-6 items-center justify-center rounded-full border-[3px] border-gray-400 p-[3px] font-medium hover:cursor-pointer",
+          "flex size-5 items-center justify-center rounded-full border-[2px] border-gray-400 p-[3px] mr-4 font-medium hover:cursor-pointer",
           className,
         )}
       >
