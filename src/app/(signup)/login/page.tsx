@@ -34,7 +34,7 @@ const Page = () => {
         </button>
         <button
           onClick={handleNaverLogin}
-          className="flex items-center justify-center gap-x-2 rounded-[10px] bg-[#02C759] p-4 text-base font-medium text-white"
+          className="mb-14 flex items-center justify-center gap-x-2 rounded-[10px] bg-[#02C759] p-4 text-base font-medium text-white"
         >
           <Icon icon="simple-icons:naver" />
           네이버로 시작하기
