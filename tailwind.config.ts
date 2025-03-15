@@ -1,3 +1,4 @@
+import scrollbarHide from "tailwind-scrollbar-hide"
 import type { Config } from "tailwindcss"
 import defaultColor from "./src/styles/default-color"
 import defaultFontSize from "./src/styles/default-font-size"
@@ -14,5 +15,5 @@ export default {
       borderRadius: ({ theme }: { theme: (path: string, defaultValue?: unknown) => any }) => theme("spacing"),
     },
   },
-  plugins: [],
+  plugins: [scrollbarHide],
 } satisfies Config

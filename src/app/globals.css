@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --footer-nav-height: 80px;
+  --header-height: 52px;
+}
+
+html {
+  line-height: normal;
+}
+
 body {
   font-family: var(--font-apple);
 }

@@ -1,9 +1,31 @@
 import ArrowLeftIcon from "./arrow-left.svg"
-import Comment from "./comment.svg"
 import Heart from "./heart.svg"
 import Logo from "./logo.svg"
-import Notify from "./notification.svg"
 import Sad from "./sad.svg"
+import CloseIcon from "./close.svg"
+import CommentIcon from "./comment.svg"
+import EventIcon from "./event.svg"
+import HomeIcon from "./home.svg"
+import LocationIcon from "./location.svg"
+import Logo from "./logo.svg"
+import Notify from "./notification.svg"
+import RotateIcon from "./rotate.svg"
 import Search from "./search.svg"
+import UserIcon from "./user.svg"
 
-export { ArrowLeftIcon, Logo, Search, Notify, Sad, Heart, Comment }
+export {
+  ArrowLeftIcon,
+  Logo,
+  Search,
+  Notify,
+  CloseIcon,
+  EventIcon,
+  HomeIcon,
+  LocationIcon,
+  UserIcon,
+  CommentIcon,
+  RotateIcon,
+  Sad, 
+  Heart, 
+  Comment
+}

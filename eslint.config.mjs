@@ -24,6 +24,12 @@ const eslintConfig = [
   prettierRecommended,
   ...pluginQuery.configs["flat/recommended"],
   {
+    plugins: { "@tanstack/query": pluginQuery },
+    rules: {
+      "@tanstack/query/exhaustive-deps": "off",
+    },
+  },
+  {
     name: "절대 경로 import",
     plugins: {
       "no-relative-import-paths": noRelativeImportPaths,

@@ -10,17 +10,17 @@ const appleFont = localFont({
     {
       path: "../../public/fonts/AppleSDGothicNeo-Medium.woff2",
       weight: "500",
-      style: "medium",
+      style: "normal",
     },
     {
       path: "../../public/fonts/AppleSDGothicNeo-Bold.woff2",
       weight: "700",
-      style: "bold",
+      style: "normal",
     },
     {
       path: "../../public/fonts/AppleSDGothicNeo-ExtraBold.woff2",
       weight: "800",
-      style: "extrabold",
+      style: "normal",
     },
   ],
   display: "swap",
