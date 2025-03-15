@@ -7,24 +7,32 @@ export interface Member {
   nickname: string
 }
 
+export interface Club {
+  title: string
+}
+
+export interface Region {
+  title: string
+}
+
 export interface ContentItemResponse {
   id?: number
-  title: string
   thumbnailImageUrl: string
-  address: string
+  title?: string
+  region: Region
+  club?: Club
 }
 
 export interface PostResponse {
   id?: number
   title: string
   thumbnailImageUrl: string
-  address: string
   content: string
   visitCount: number
   likeCount: number
   commentCount: number
   member: Member
-  created: string
+  createdAt: string
 }
 
 export interface ContentListResponse {

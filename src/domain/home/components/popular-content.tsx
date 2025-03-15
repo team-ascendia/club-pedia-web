@@ -10,7 +10,7 @@ interface PopularContentProps {
 
 const PopularContent = (props: PopularContentProps) => {
   const { post } = props
-  const { title, content, thumbnailImageUrl, member, created, likeCount, commentCount, visitCount } = post
+  const { title, content, thumbnailImageUrl, member, createdAt, likeCount, commentCount, visitCount } = post
   const calculateDate = (created: string) => {
     const createdDate = new Date(created)
     const currentDate = new Date()
@@ -46,7 +46,7 @@ const PopularContent = (props: PopularContentProps) => {
         </div>
         <div className="text-body6 flex flex-row justify-between gap-x-16 text-gray-500">
           <div>
-            {member?.nickname}&#8226;{calculateDate(created)}&#8226;조회수 {formatNumber(visitCount)}
+            {member?.nickname}&#8226;{calculateDate(createdAt)}&#8226;조회수 {formatNumber(visitCount)}
           </div>
           <div className="flex gap-x-[18px]">
             <div className="flex gap-x-[5px]">

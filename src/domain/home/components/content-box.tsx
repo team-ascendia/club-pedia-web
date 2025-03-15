@@ -5,23 +5,21 @@ import { ContentItemResponse } from "@/src/domain/types/home"
 
 interface BoxProps {
   content: ContentItemResponse
+  clubList: boolean
 }
 
-const ContentBox = (props: BoxProps) => {
-  const { content } = props
-  const { title, thumbnailImageUrl, address } = content
-
-  const shortAddress = (address: string) => {
-    return address.split(" ")[1]
-  }
+const ContentBox: React.FC<BoxProps> = ({ content, clubList }) => {
+  const { thumbnailImageUrl, region, club, title } = content
 
   return (
     <div className="flex flex-col">
-      {thumbnailImageUrl && (
+      {thumbnailImageUrl ? (
         <Image src={thumbnailImageUrl} alt="club/event_img" width={140} height={140} className="rounded-[5px]" />
+      ) : (
+        <div className="size-[140px] rounded-[5px] bg-gray-300" />
       )}
-      <div className="text-body2 mt-[10px]">{title}</div>
-      <div className="text-body6 text-gray-500">{shortAddress(address)}</div>
+      <div className="text-body2 mt-[10px]">{clubList ? title : club?.title}</div>
+      <div className="text-body6 text-gray-500">{region.title}</div>
     </div>
   )
 }
