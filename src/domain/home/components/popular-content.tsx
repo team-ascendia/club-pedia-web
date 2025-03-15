@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Comment, Heart } from "@/public/icons"
+import { CommentIcon, Heart } from "@/public/icons"
 import cn from "@/src/common/util/cn"
 import { SliceText } from "@/src/common/util/slice-text"
 import { PostResponse } from "@/src/domain/types/home"
@@ -54,7 +54,7 @@ const PopularContent = (props: PopularContentProps) => {
               {formatNumber(likeCount)}
             </div>
             <div className="flex gap-x-[5px]">
-              <Comment className={cn("size-4")} />
+              <CommentIcon className={cn("size-4")} />
               {formatNumber(commentCount)}
             </div>
           </div>
