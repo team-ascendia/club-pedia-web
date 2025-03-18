@@ -17,3 +17,8 @@ export interface DefaultErrorResponse<T> {
     details: T
   }
 }
+
+export interface DefaultListParams {
+  page: number
+  pageSize: number
+}

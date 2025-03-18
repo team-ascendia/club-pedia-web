@@ -1,0 +1,9 @@
+echo "🔄 Running build before push..."
+
+if pnpm run build:dev; then
+  echo "✅ Build successful! Proceeding with push..."
+  exit 0
+else
+  echo "❌ Build failed! Push is blocked."
+  exit 1
+fi

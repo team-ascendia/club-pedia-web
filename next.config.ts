@@ -1,4 +1,8 @@
+import { config as dotenvConfig } from "dotenv"
 import type { NextConfig } from "next"
+dotenvConfig()
+
+console.log("NODE Env: ", process.env.NODE_ENV)
 
 const nextConfig: NextConfig = {
   webpack: config => {
@@ -9,6 +13,17 @@ const nextConfig: NextConfig = {
 
     return config
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "example.com",
+        pathname: "**",
+      },
+    ],
+  },
+
+  reactStrictMode: false,
 }
 
 export default nextConfig
