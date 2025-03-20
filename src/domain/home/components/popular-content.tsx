@@ -1,7 +1,8 @@
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
+import "dayjs/locale/ko"
 import Image from "next/image"
-import { CommentIcon, Heart } from "@/public/icons"
-import cn from "@/src/common/util/cn"
-import { SliceText } from "@/src/common/util/slice-text"
+import { CommentIcon, HeartIcon } from "@/public/icons"
 import { PostResponse } from "@/src/domain/types/home"
 
 interface PopularContentProps {
@@ -11,14 +12,12 @@ interface PopularContentProps {
 const PopularContent = (props: PopularContentProps) => {
   const { post } = props
   const { title, content, thumbnailImageUrl, member, createdAt, likeCount, commentCount, visitCount } = post
-  const calculateDate = (created: string) => {
-    const createdDate = new Date(created)
-    const currentDate = new Date()
 
-    const diffTime = Math.abs(currentDate.getTime() - createdDate.getTime())
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  dayjs.extend(relativeTime)
+  dayjs.locale("ko")
 
-    return diffDays === 0 ? "오늘" : `${diffDays}일 전`
+  const calculateDate = (updatedTime: string) => {
+    return dayjs(updatedTime).fromNow()
   }
 
   const formatNumber = (num: number) => {
@@ -33,7 +32,7 @@ const PopularContent = (props: PopularContentProps) => {
           <div className="w-20 shrink-0" />
         </div>
         <div className="mb-2 flex flex-row flex-wrap justify-between gap-x-3">
-          <div className="text-body2 min-w-0 flex-1 break-words">{SliceText(content)}</div>
+          <div className="text-body2 line- clamp-3 min-w-0 flex-1 break-words">{content}</div>
           {thumbnailImageUrl && (
             <Image
               src={thumbnailImageUrl}
@@ -50,11 +49,11 @@ const PopularContent = (props: PopularContentProps) => {
           </div>
           <div className="flex gap-x-[18px]">
             <div className="flex gap-x-[5px]">
-              <Heart className={cn("size-4")} />
+              <HeartIcon className="size-4" />
               {formatNumber(likeCount)}
             </div>
             <div className="flex gap-x-[5px]">
-              <CommentIcon className={cn("size-4")} />
+              <CommentIcon className="size-4" />
               {formatNumber(commentCount)}
             </div>
           </div>

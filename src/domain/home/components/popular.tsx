@@ -31,9 +31,9 @@ const Popular = () => {
 
   return (
     <div className="mb-[64px] mt-[29px] px-[10px]">
-      <div className="mx-[14px] mb-[10px] flex justify-between">
+      <div className="mx-[14px] mb-[10px] flex items-center justify-between">
         <div className="text-title4">실시간 인기 글</div>
-        <div onClick={handleOpenAll} className="text-body6">
+        <div onClick={handleOpenAll} className="text-body6 text-gray-500 hover:cursor-pointer">
           전체 보기 {">"}
         </div>
       </div>
