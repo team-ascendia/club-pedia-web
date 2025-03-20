@@ -1,14 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import { ContentItemResponse } from "@/src/domain/types/home"
+import { HomeContentItemResponse } from "@/src/domain/types/home"
 
 interface BoxProps {
-  content: ContentItemResponse
+  content: HomeContentItemResponse
   clubList: boolean
 }
 
-const ContentBox: React.FC<BoxProps> = ({ content, clubList }) => {
+const HomeContentBox: React.FC<BoxProps> = ({ content, clubList }) => {
   const { thumbnailImageUrl, region, club, title } = content
 
   return (
@@ -24,4 +24,4 @@ const ContentBox: React.FC<BoxProps> = ({ content, clubList }) => {
   )
 }
 
-export default ContentBox
+export default HomeContentBox

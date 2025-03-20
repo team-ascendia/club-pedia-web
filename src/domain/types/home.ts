@@ -1,6 +1,9 @@
+import { ReactNode } from "react"
+
 export interface ContainerProps {
-  title: string
+  children: ReactNode
   movePath?: string
+  type: string
 }
 
 export interface Member {
@@ -15,7 +18,7 @@ export interface Region {
   title: string
 }
 
-export interface ContentItemResponse {
+export interface HomeContentItemResponse {
   id?: number
   thumbnailImageUrl: string
   title?: string
@@ -36,7 +39,7 @@ export interface PostResponse {
 }
 
 export interface ContentListResponse {
-  items: ContentItemResponse[]
+  items: HomeContentItemResponse[]
 }
 
 export interface PostListResponse {
