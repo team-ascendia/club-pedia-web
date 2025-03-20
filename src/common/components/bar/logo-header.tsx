@@ -1,15 +1,14 @@
 "use client"
 
-import { Logo, Notify, Search } from "@/public/icons"
-import cn from "@/src/common/util/cn"
+import { Logo, NotifyIcon, SearchIcon } from "@/public/icons"
 
 const LogoHeader = () => {
   return (
-    <div className="flex items-center justify-between px-4 py-3">
-      <Logo className={cn("w-28")} />
+    <div className="flex items-center justify-between px-4 py-3 " style={{ height: "var(--header-height)" }}>
+      <Logo className="w-28" />
       <div className="flex gap-x-4">
-        <Search className={cn("size-6")} />
-        <Notify className={cn("size-6")} />
+        <SearchIcon className="size-6 hover:cursor-pointer" />
+        <NotifyIcon className="size-6 hover:cursor-pointer" />
       </div>
     </div>
   )

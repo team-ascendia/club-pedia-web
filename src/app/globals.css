@@ -14,7 +14,3 @@ html {
 body {
   font-family: var(--font-apple);
 }
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}

@@ -1,5 +1,5 @@
 import BottomNavigationItem from "./bottom-navigation-item"
-import { CommentIcon, HomeIcon, LocationIcon, UserIcon } from "@/public/icons"
+import { CommunityIcon, HomeIcon, LocationIcon, UserIcon } from "@/public/icons"
 
 const NaviItems = [
   {
@@ -15,7 +15,7 @@ const NaviItems = [
   {
     label: "커뮤니티",
     path: "/community",
-    Icon: <CommentIcon />,
+    Icon: <CommunityIcon />,
   },
   {
     label: "마이페이지",
