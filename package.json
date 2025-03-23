@@ -2,6 +2,7 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "env:pull": "npx dotenv-vault@latest pull && npx dotenv-vault@latest pull staging && npx dotenv-vault@latest pull production",
     "env:push": "npx dotenv-vault@latest push && npx dotenv-vault@latest push staging && npx dotenv-vault@latest push production",
@@ -13,7 +14,8 @@
     "build:prod": "env-cmd -f .env.production next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gen:icons": "node generate-icon-exports.cjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -24,6 +26,7 @@
     "@tanstack/react-query": "^5.66.3",
     "@tanstack/react-query-devtools": "^5.66.3",
     "@types/kakao-js-sdk": "^1.39.5",
+    "all": "^0.0.0",
     "class-variance-authority": "^0.7.1",
     "cookies-next": "^5.1.0",
     "dayjs": "^1.11.13",
@@ -40,7 +43,7 @@
     "@eslint/js": "^9.4.0",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/eslint-plugin-query": "^5.66.1",
-    "@types/node": "^20",
+    "@types/node": "^20.17.18",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "clsx": "^2.1.1",
@@ -54,11 +57,12 @@
     "eslint-plugin-tailwindcss": "^3.18.0",
     "eslint-plugin-unicorn": "^53.0.0",
     "eslint-plugin-unused-imports": "^4.1.4",
+    "glob": "^11.0.1",
     "husky": "^9.1.7",
     "msw": "^2.7.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.7.3"
   },
   "msw": {
     "workerDirectory": [
