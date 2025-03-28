@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 
 export interface ContainerProps {
   children: ReactNode
-  movePath?: string
+  movePath: string
   type: string
 }
 

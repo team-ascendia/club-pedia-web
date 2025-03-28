@@ -8,8 +8,12 @@ const Page = () => {
     <div>
       <LogoHeader />
       <div className="h-[130px] w-full bg-[#D9D9D9]" />
-      <HomeContentContainer type="club">회원님을 위한 인기 클럽</HomeContentContainer>
-      <HomeContentContainer type="event">Event</HomeContentContainer>
+      <HomeContentContainer type="club" movePath="/club">
+        회원님을 위한 인기 클럽
+      </HomeContentContainer>
+      <HomeContentContainer type="event" movePath="/event">
+        Event
+      </HomeContentContainer>
       <Popular />
       <Footer />
     </div>
