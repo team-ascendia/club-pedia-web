@@ -1,0 +1,67 @@
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
+import "dayjs/locale/ko"
+import Image from "next/image"
+import { CommentIcon, HeartIcon } from "@/public/icons"
+import { PostResponse } from "@/src/domain/types/home"
+
+interface PopularContentProps {
+  post: PostResponse
+}
+
+const PopularContent = (props: PopularContentProps) => {
+  const { post } = props
+  const { title, content, thumbnailImageUrl, member, createdAt, likeCount, commentCount, visitCount } = post
+
+  dayjs.extend(relativeTime)
+  dayjs.locale("ko")
+
+  const calculateDate = (updatedTime: string) => {
+    return dayjs(updatedTime).fromNow()
+  }
+
+  const formatNumber = (num: number) => {
+    return num.toLocaleString("ko-KR")
+  }
+
+  return (
+    <div className="flex flex-col pt-5">
+      <div className="mx-[14px]">
+        <div className="flex flex-row">
+          <div className="text-title5 mb-2 min-w-0 flex-1 break-words">{title}</div>
+          <div className="w-20 shrink-0" />
+        </div>
+        <div className="mb-2 flex flex-row flex-wrap justify-between gap-x-3">
+          <div className="text-body2 line- clamp-3 min-w-0 flex-1 break-words">{content}</div>
+          {thumbnailImageUrl && (
+            <Image
+              src={thumbnailImageUrl}
+              alt="popular_img"
+              width={67}
+              height={67}
+              className="shrink-0 rounded-[5px]"
+            />
+          )}
+        </div>
+        <div className="text-body6 flex flex-row justify-between gap-x-16 text-gray-500">
+          <div>
+            {member?.nickname}&#8226;{calculateDate(createdAt)}&#8226;조회수 {formatNumber(visitCount)}
+          </div>
+          <div className="flex gap-x-[18px]">
+            <div className="flex gap-x-[5px]">
+              <HeartIcon className="size-4" />
+              {formatNumber(likeCount)}
+            </div>
+            <div className="flex gap-x-[5px]">
+              <CommentIcon className="size-4" />
+              {formatNumber(commentCount)}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-5 h-px w-full bg-gray-500" />
+    </div>
+  )
+}
+
+export default PopularContent

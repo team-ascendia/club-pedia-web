@@ -8,12 +8,12 @@ const GenderBox = () => {
 
   return (
     <div className="flex gap-x-12">
-      <div className="text-body2 flex items-center gap-x-1">
+      <div className="text-body2 flex items-center gap-x-4">
         <RoundedCheckInput active={user?.gender === "MALE"} name="MALE" onChange={() => setGender("MALE")} />
         남성
       </div>
 
-      <div className="text-body2 flex items-center gap-x-1">
+      <div className="text-body2 flex items-center gap-x-4">
         <RoundedCheckInput active={user?.gender === "FEMALE"} name="FEMALE" onChange={() => setGender("FEMALE")} />
         여성
       </div>

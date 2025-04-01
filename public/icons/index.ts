@@ -2,8 +2,10 @@ import ArrowLeftIcon from "./arrow-left.svg"
 import ClockIcon from "./clock.svg"
 import CloseIcon from "./close.svg"
 import CommentIcon from "./comment.svg"
+import CommunityIcon from "./community.svg"
 import EarthIcon from "./earth.svg"
 import EventIcon from "./event.svg"
+import HeartIcon from "./heart.svg"
 import HomeIcon from "./home.svg"
 import InformationIcon from "./information.svg"
 import InstagramIcon from "./instagram.svg"
@@ -16,6 +18,7 @@ import MapIcon from "./map.svg"
 import NaverMapIcon from "./naver-map.svg"
 import NotificationIcon from "./notification.svg"
 import RotateIcon from "./rotate.svg"
+import SadIcon from "./sad.svg"
 import SearchIcon from "./search.svg"
 import ShareIcon from "./share.svg"
 import SmokeCloudIcon from "./smoke-cloud.svg"
@@ -43,9 +46,10 @@ export {
   LogoIcon,
   MapIcon,
   NaverMapIcon,
-  NotificationIcon,
+  CommunityIcon,
   RotateIcon,
-  SearchIcon,
+  SadIcon,
+  HeartIcon,
   ShareIcon,
   SmokeCloudIcon,
   SoundIcon,
@@ -54,4 +58,6 @@ export {
   ThumbUpIcon,
   UserIcon,
   VerticalThreeDotIcon,
+  NotificationIcon,
+  SearchIcon,
 }

@@ -1,12 +1,18 @@
 "use client"
 
-import { LogoIcon } from "@/public/icons"
-import cn from "@/src/common/util/cn"
+import { useRouter } from "next/navigation"
+import { LogoIcon, NotificationIcon, SearchIcon } from "@/public/icons"
 
 const LogoHeader = () => {
+  const router = useRouter()
+
   return (
-    <div className="flex items-center justify-between px-4 py-3">
-      <LogoIcon className={cn("w-28")} />
+    <div className="flex items-center justify-between px-4 py-3 " style={{ height: "var(--header-height)" }}>
+      <LogoIcon className="w-28 hover:cursor-pointer" onClick={() => router.push("/")} />
+      <div className="flex gap-x-4">
+        <SearchIcon className="size-6 hover:cursor-pointer" />
+        <NotificationIcon className="size-6 hover:cursor-pointer" />
+      </div>
     </div>
   )
 }
