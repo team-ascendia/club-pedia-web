@@ -1,9 +1,7 @@
-import ClubInfo from "./_components/club-info"
-import { ClubPediaErrorBoundary } from "@/src/common/components/error-boundary/club-pedia-error-boundray"
-import DefaultErrorBoundaryFallback from "@/src/common/components/error-boundary/default-error-boundary-fallback"
+import ClubDetailTemplate from "./_components/club-detail-template"
+import ClubIntro from "./_components/club-intro"
 import BottomNavigation from "@/src/common/components/layout/bottom-navigation"
 import HeaderWithBackButton from "@/src/common/components/layout/header-with-back-button"
-import PrefetchBoundary from "@/src/common/util/tanstack-query/prefetch-suspense"
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -16,11 +14,9 @@ const Page = async (props: PageProps) => {
   return (
     <div className="relative mb-[var(--footer-nav-height)]">
       <HeaderWithBackButton title={"W클럽"} sticky />
-      <PrefetchBoundary prefetchList={[]}>
-        <ClubPediaErrorBoundary fallback={DefaultErrorBoundaryFallback}>
-          <ClubInfo />
-        </ClubPediaErrorBoundary>
-      </PrefetchBoundary>
+      <ClubIntro />
+      <div className="h-1 bg-gray-100" />
+      <ClubDetailTemplate />
       <BottomNavigation />
     </div>
   )

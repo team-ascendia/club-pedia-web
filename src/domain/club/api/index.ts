@@ -23,6 +23,27 @@ const clubApi = {
 
     return response
   },
+
+  reportReview: async (props: { id: number }) => {
+    const { id } = props
+    const response = await KyInstance.post(`club-reviews/${id}/report`).json()
+
+    return response
+  },
+
+  likeReview: async (props: { id: number }) => {
+    const { id } = props
+    const response = await KyInstance.post(`club-reviews/${id}/like`).json()
+
+    return response
+  },
+
+  unlikeReview: async (props: { id: number }) => {
+    const { id } = props
+    const response = await KyInstance.delete(`club-reviews/${id}/like`).json()
+
+    return response
+  },
 }
 
 export default clubApi

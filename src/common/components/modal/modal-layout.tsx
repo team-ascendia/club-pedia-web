@@ -1,5 +1,9 @@
-import { PropsWithChildren, useRef } from "react"
+"use client"
+
+import { usePathname } from "next/navigation"
+import { PropsWithChildren, useEffect, useRef } from "react"
 import { useBottomSheetDragClose } from "./hooks/use-bottom-sheet-drag"
+import BottomNavigation from "@/src/common/components/layout/bottom-navigation"
 import useOutsideClick from "@/src/common/hooks/use-out-side-click"
 import { ModalComponentRequiredProps } from "@/src/common/module/modal-manager"
 import cn from "@/src/common/util/cn"
@@ -14,14 +18,27 @@ interface ModalLayoutProps extends PropsWithChildren, ModalComponentRequiredProp
   className?: string
   withBottomSheetAnimation?: boolean
   withBottomSheetDragHandler?: boolean
+  withBottomNavigation?: boolean
+  fullScreen?: boolean
 }
 
 const ModalLayout = (props: ModalLayoutProps) => {
-  const { close, className, children, withBottomSheetAnimation, withBottomSheetDragHandler, isOpen } = props
+  const {
+    close,
+    className,
+    children,
+    withBottomSheetAnimation,
+    withBottomNavigation,
+    fullScreen,
+    withBottomSheetDragHandler,
+    isOpen,
+  } = props
 
   const outsideRef = useRef<HTMLDivElement>(null)
   const dragHandlerRef = useRef<HTMLDivElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
+
+  const pathname = usePathname()
 
   useOutsideClick({
     callback: close,
@@ -34,11 +51,19 @@ const ModalLayout = (props: ModalLayoutProps) => {
     handleRef: dragHandlerRef,
   })
 
+  useEffect(() => {
+    return () => {
+      close()
+    }
+  }, [pathname])
+
   return (
     <div className={cn("flex h-full w-full flex-col absolute")} ref={modalRef}>
       <div
         ref={outsideRef}
-        className={cn("absolute", className, withBottomSheetAnimation && _getBottomSheetAnimation(isOpen))}
+        className={cn("absolute", className, withBottomSheetAnimation && _getBottomSheetAnimation(isOpen), {
+          "h-dvh w-full": fullScreen,
+        })}
       >
         {withBottomSheetDragHandler && (
           <div className="py-2" ref={dragHandlerRef}>
@@ -46,6 +71,7 @@ const ModalLayout = (props: ModalLayoutProps) => {
           </div>
         )}
         {children}
+        {withBottomNavigation && <BottomNavigation />}
       </div>
     </div>
   )

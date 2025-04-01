@@ -93,3 +93,18 @@ interface SomeResponse {}
   - **일반 Pull Request Merge** 사용
   - `dev` 브랜치에서 충분한 테스트를 거친 후 `main`으로 병합
   - 기존 커밋 히스토리를 유지하여 변경 사항 추적 가능
+
+---
+
+## Icon
+
+- Icon 파일은 /public/icons에 svg을 넣어 주세요.
+- svg 파일의 width와 height는 제거 해주신 후 Component화 된 Icon을 통하여 사이즈 조절을 합니다.
+- 단일 컬러일 경우 fill 또한 currentColor로 변경하고 Component화 된 Icon을 통하여 색상을 변경합니다.
+
+```jsx
+// ex
+<SomeIcon className="size-5 text-cyan-500" />
+```
+
+`pnpm gen:icons`를 실행시켜 추가 된 svg 파일들을 export 시킬 수 있습니다.
