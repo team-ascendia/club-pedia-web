@@ -17,3 +17,8 @@ export const formatDateRange = (startDate: string, endDate: string) => {
 
   return `${start.format("MM.DD")} - ${end.format("MM.DD")}`
 }
+
+export const formatDate = (props: { date: string; format: string }) => {
+  const day = dayjs(props.date)
+  return day.format(props.format)
+}

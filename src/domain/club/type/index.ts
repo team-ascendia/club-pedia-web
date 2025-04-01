@@ -46,3 +46,7 @@ export type ClubFilters = {
   isOpen: IsOpenFilter
   date: DateFilter
 }
+
+export type ReviewResponse = {
+  id: number
+}
