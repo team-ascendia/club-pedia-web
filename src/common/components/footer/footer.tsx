@@ -1,12 +1,12 @@
 import Image from "next/image"
-import { Logo } from "@/public/icons"
+import { LogoIcon } from "@/public/icons"
 import cn from "@/src/common/util/cn"
 
 const Footer = () => {
   return (
     <div className="w-full bg-gray-50 px-6 py-5">
       <div className="mb-3 flex justify-between">
-        <Logo className={cn("w-28")} />
+        <LogoIcon className={cn("w-28")} />
         <Image src="/icons/instagram.svg" alt="Instagram" width={32} height={32} />
         {/* <Instagram className={cn("w-8")} /> */}
       </div>
